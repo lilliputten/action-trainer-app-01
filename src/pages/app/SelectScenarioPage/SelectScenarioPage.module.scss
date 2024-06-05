@@ -26,7 +26,7 @@ $videoRedColor: #e41a4a;
   right: 0;
   top: 0;
   bottom: 0;
-  transition: all $transitionTimeMs, background 1s;
+  transition: all $transitionTimeMs, opacity $effectTimeMs, background $effectTimeMs;
   pointer-events: none;
   opacity: 0;
 }
@@ -34,26 +34,16 @@ $videoRedColor: #e41a4a;
 .over {
   .videoComplete & {
     opacity: 1;
-    // backdrop-filter: blur(0.1vw);
-    // backdrop-filter: brightness(80%) contrast(110%);
-    // backdrop-filter: brightness(90%);
     background-color: color.change(black, $alpha: 0.3);
-    // animation: ease-in shadeComplete 500ms;
-    // @keyframes shadeComplete {
-    //   0%{
-    //     background-color: transparent;
-    //   }
-    //   100% {
-    //     background-color: color.change($videoRedColor, $alpha: 0.3);
-    //   }
-    // }
   }
 }
 .curtain {
-  .finished & {
-    opacity: 1;
-    background-color: color.change($videoBlueColor, $alpha: 1);
-    pointer-events: all;
+  background-color: $videoBlueColor;
+  opacity: 1;
+  pointer-events: all;
+  .active & {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
@@ -70,7 +60,10 @@ $videoRedColor: #e41a4a;
   &:hover {
     // background-color: color.change($videoRedColor, $alpha: 0.1);
     border: 1vw dashed color.change($videoRedColor, $alpha: 0.5);
-    backdrop-filter: brightness(100%) contrast(110%);
+  }
+  &:hover,
+  &.selected {
+    backdrop-filter: brightness(110%) contrast(110%);
   }
   &.selected {
     border: 1vw solid color.change($videoRedColor, $alpha: 0.5);

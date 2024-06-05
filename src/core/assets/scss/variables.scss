@@ -13,11 +13,17 @@ $demoColor: color.change(yellow, $alpha: 0.5);
 $transitionTimeMs: 250ms;
 $animationTimeMs: 500ms;
 $disappearTimeMs: 1000ms;
+$effectTimeMs: 1500ms;
 
 $defaultFontSizePx: 14px;
 
 $primaryColor: #339af0; // #26abe0;
 $secondaryColor: #ffa550;
+
+// Video colors...
+
+$videoRedColor: #e41a4a;
+$videoBlueColor: #566990; // Alternate video color
 
 $defaultBackgroundColor: #fffbdc; // Video background color // #fff;
 $defaultBackgroundColorDark: #1a1b1e;

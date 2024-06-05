@@ -13,6 +13,7 @@ const {
   transitionTimeMs,
   animationTimeMs,
   disappearTimeMs,
+  effectTimeMs,
 
   primaryColor,
   secondaryColor,
@@ -44,6 +45,7 @@ const defaultFontSizeRem = (defaultFontSize * 16) / 10;
 const transitionTime = parseInt(transitionTimeMs);
 const animationTime = parseInt(animationTimeMs);
 const disappearTime = parseInt(disappearTimeMs);
+const effectTime = parseInt(effectTimeMs);
 
 export {
   // Fixed screen size
@@ -63,9 +65,11 @@ export {
   transitionTime,
   animationTime,
   disappearTime,
+  effectTime,
   transitionTimeMs,
   animationTimeMs,
   disappearTimeMs,
+  effectTimeMs,
 
   // Colors...
   primaryColor,

@@ -1,14 +1,14 @@
 import { RouteObject } from 'react-router-dom';
 
-import { makeUrl } from 'src/core/helpers/urls';
+// import { makeUrl } from 'src/core/helpers/urls';
 
 import {
   demoRoute,
-  loginRoute,
-  mainRoute,
-  mainSurveyRoute,
+  // loginRoute,
+  // mainRoute,
+  // mainSurveyRoute,
   rootUrl,
-  startRoute,
+  // startRoute,
   testRoute,
 } from './appUrls';
 
@@ -18,10 +18,10 @@ import { DemoPage } from 'src/pages/app/DemoPage';
 // import { MainEditSurveyPage } from 'src/pages/main/MainEditSurveyPage';
 // import { MainLayout } from 'src/pages/main/MainLayout';
 // import { MainSurveysList } from 'src/pages/main/MainSurveysList';
-// import { StartPage } from 'src/pages/app/StartPage';
+// import { SelectScenarioPage } from 'src/pages/app/SelectScenarioPage';
 import { TestPage } from 'src/pages/app/TestPage';
-import { WaitingPage } from 'src/pages/app/WaitingPage';
-import { StartPage } from 'src/pages/app/StartPage';
+// import { WaitingPage } from 'src/pages/app/WaitingPage';
+import { SelectScenarioPage } from 'src/pages/app/SelectScenarioPage';
 
 /** Routes
  * @see src/routes/appUrls.ts
@@ -33,7 +33,7 @@ export const routes: RouteObject[] = [
     element: <AppRootLayout />,
     // loader
     children: [
-      { index: true, element: <StartPage /> },
+      { index: true, element: <SelectScenarioPage /> },
       // { index: true, element: <WaitingPage /> },
       // { path: loginRoute, element: <LoginPage /> },
       // {
@@ -46,7 +46,7 @@ export const routes: RouteObject[] = [
       //     { path: startRoute, element: <TestPage /> },
       //   ],
       // },
-      // { path: startRoute, element: <StartPage /> }, // TODO?
+      // { path: startRoute, element: <SelectScenarioPage /> }, // TODO?
       { path: demoRoute, element: <DemoPage /> }, // NOTE: Debug only!
       { path: testRoute, element: <TestPage /> }, // NOTE: Debug only!
     ],
