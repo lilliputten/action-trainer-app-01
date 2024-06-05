@@ -21,6 +21,7 @@ import { DemoPage } from 'src/pages/app/DemoPage';
 // import { StartPage } from 'src/pages/app/StartPage';
 import { TestPage } from 'src/pages/app/TestPage';
 import { WaitingPage } from 'src/pages/app/WaitingPage';
+import { StartPage } from 'src/pages/app/StartPage';
 
 /** Routes
  * @see src/routes/appUrls.ts
@@ -32,7 +33,8 @@ export const routes: RouteObject[] = [
     element: <AppRootLayout />,
     // loader
     children: [
-      { index: true, element: <WaitingPage /> },
+      { index: true, element: <StartPage /> },
+      // { index: true, element: <WaitingPage /> },
       // { path: loginRoute, element: <LoginPage /> },
       // {
       //   path: mainRoute,

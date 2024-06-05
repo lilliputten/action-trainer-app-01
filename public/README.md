@@ -3,7 +3,7 @@
 @changed 2024.02.10, 21:29
 -->
 
-# Axiomica
+# Action Trainer
 
 Action trainer app.
 

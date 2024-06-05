@@ -3,6 +3,10 @@
 import cssVariables from './variables.module.scss';
 
 const {
+  // Fixed screen size
+  screenWidthPx,
+  screenHeightPx,
+
   themeControlsRadiusPx,
   defaultFontSizePx,
 
@@ -29,6 +33,9 @@ const {
   infoColor,
 } = cssVariables;
 
+const screenWidth = parseInt(screenWidthPx);
+const screenHeight = parseInt(screenHeightPx);
+
 const themeControlsRadius = parseInt(themeControlsRadiusPx);
 const defaultFontSize = parseInt(defaultFontSizePx);
 
@@ -39,6 +46,12 @@ const animationTime = parseInt(animationTimeMs);
 const disappearTime = parseInt(disappearTimeMs);
 
 export {
+  // Fixed screen size
+  screenWidthPx,
+  screenHeightPx,
+  screenWidth,
+  screenHeight,
+
   // Dimensions...
   themeControlsRadiusPx,
   defaultFontSizePx,

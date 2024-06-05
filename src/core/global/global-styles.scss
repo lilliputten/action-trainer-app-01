@@ -18,8 +18,16 @@
 }
 
 #root,
-body {
+body.page {
   @include singleFullSizeContainer;
+  & {
+    // Set fixed size
+    // width: $screenWidthPx;
+    // height: $screenHeightPx;
+  }
+  // border: 1px dashed red; // DEBUG
+  // Set video background color
+  background-color: $defaultBackgroundColor;
 }
 
 .dull {

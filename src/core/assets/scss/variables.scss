@@ -1,6 +1,10 @@
 @use 'sass:math';
 @use 'sass:color';
 
+// Fixed screen size
+$screenWidthPx: 688px;
+$screenHeightPx: 450px;
+
 // See exports in `variables.module.scss`...
 
 // DEMO
@@ -13,10 +17,9 @@ $disappearTimeMs: 1000ms;
 $defaultFontSizePx: 14px;
 
 $primaryColor: #339af0; // #26abe0;
-// $primaryColor: #00508f; // Axiomica color (too dark; see Issue #24)
 $secondaryColor: #ffa550;
 
-$defaultBackgroundColor: #fff;
+$defaultBackgroundColor: #fffbdc; // Video background color // #fff;
 $defaultBackgroundColorDark: #1a1b1e;
 
 $defaultTextColor: #333;
