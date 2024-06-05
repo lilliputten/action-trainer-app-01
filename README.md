@@ -7,8 +7,8 @@
 
 Action trainer app.
 
-- Version: 0.0.3
-- Last changes timestamp: 2024.06.05 00:48 +0300
+- Version: 0.0.0
+- Last changes timestamp: 2024.06.05 21:25 +0300
 
 TODO: Add the project description.
 
@@ -21,7 +21,7 @@ TODO: Add the project description.
 
 Repository: https://github.com/lilliputten/action-trainer-app-01
 
-Demo deploy server (with a recent build): http://action-trainer-app-01.lilliputten.ru/
+Demo deploy server (with a recent build): https://action-trainer-app-01.march.team/
 
 ## Project workflow
 
