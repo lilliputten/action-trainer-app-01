@@ -1,30 +1,60 @@
-import { Box, IconButton } from '@mui/material';
-import { Replay } from '@mui/icons-material';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { Box, IconButton, Stack } from '@mui/material';
+import { Fullscreen, FullscreenExit, Replay } from '@mui/icons-material';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
+import screenfull from 'screenfull';
 
 import { TPropsWithChildrenAndClassName } from 'src/core/types';
 import { RouterLinkComponent } from 'src/components/MUI';
+import { useAppSessionStore } from 'src/store';
 // import { Scrollable } from 'src/ui/Basic';
 
 export const ScreenWrapper: React.FC<TPropsWithChildrenAndClassName> = observer((props) => {
+  const appSessionStore = useAppSessionStore();
+  const { fullscreen } = appSessionStore;
   const { children, className } = props;
+  const location = useLocation();
+  const { pathname } = location;
+  const isRoot = !pathname || pathname === '/';
+  // const initialFullScreen = window.innerHeight === window.screen.height;
+  const [isFullscreen, setFullscreen] = React.useState(fullscreen);
+  React.useEffect(() => {
+    if (isFullscreen !== appSessionStore.fullscreen) {
+      appSessionStore.setFullscreen(isFullscreen);
+      if (isFullscreen) {
+        screenfull.request();
+      } else {
+        screenfull.exit();
+      }
+    }
+  }, [appSessionStore, isFullscreen]);
+  const toggleFullscreen = React.useCallback(() => {
+    setFullscreen((isFullscreen) => !isFullscreen);
+  }, []);
   return (
     <Box className={classNames(className)}>
       {/* Main content */}
       {children}
-      <IconButton
-        component={RouterLinkComponent}
+      <Stack
         sx={{
           position: 'absolute',
           right: 4,
           bottom: 4,
         }}
-        to="/"
-        title="Начать сначала"
+        spacing={1}
+        direction="row"
       >
-        <Replay />
-      </IconButton>
+        {!isRoot && (
+          <IconButton component={RouterLinkComponent} to="/" title="Начать сначала">
+            <Replay />
+          </IconButton>
+        )}
+        <IconButton title="Полноэкранный режим" onClick={toggleFullscreen}>
+          {isFullscreen ? <FullscreenExit /> : <Fullscreen />}
+        </IconButton>
+      </Stack>
     </Box>
   );
 });

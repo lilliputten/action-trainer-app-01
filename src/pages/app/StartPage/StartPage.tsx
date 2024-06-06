@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppSessionStore } from 'src/store/AppSessionStore';
 import { effectTime } from 'src/core/assets/scss';
+import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
 
 import styles from './StartPage.module.scss';
 
@@ -21,11 +22,11 @@ export const StartPage: React.FC = observer(() => {
     }, effectTime);
   }, [appSessionStore, navigate]);
   return (
-    <Box className={classNames(styles.root, isStarted && styles.started)}>
+    <ScreenWrapper className={classNames(styles.root, isStarted && styles.started)}>
       <ButtonBase className={classNames(styles.button)} onClick={handleStart}>
         Начать
       </ButtonBase>
       <Box className={classNames(styles.curtain)}></Box>
-    </Box>
+    </ScreenWrapper>
   );
 });

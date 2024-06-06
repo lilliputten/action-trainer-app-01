@@ -68,6 +68,7 @@ export class AppSessionStore {
 
   /** Application theme */
   @observable themeMode: TMuiThemeMode = defaultMuiThemeMode;
+  @observable fullscreen: boolean = window.innerHeight === window.screen.height;
 
   // Lifecycle...
 
@@ -171,6 +172,10 @@ export class AppSessionStore {
     this.themeMode = themeMode;
   }
 
+  @action setFullscreen(fullscreen: typeof AppSessionStore.prototype.fullscreen) {
+    this.fullscreen = fullscreen;
+  }
+
   // Generic utilities...
 
   @action clearData() {
@@ -190,6 +195,7 @@ export class AppSessionStore {
   @action clearSettings() {
     // TODO: Use saved on initialization default values and list of resetable parameters...
     this.themeMode = defaultMuiThemeMode;
+    this.fullscreen = window.innerHeight === window.screen.height;
   }
 
   // Reactions...
