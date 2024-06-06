@@ -9,7 +9,7 @@ export function useResizeObserver<T extends HTMLElement>(
   callback: TCallback<T>,
   updateResizeDelay = defaultUpdateResizeDelay,
 ) {
-  const ref = useRef<T>();
+  const ref = useRef<T>(null);
   useLayoutEffect(() => {
     const element = ref?.current;
     if (!element) {

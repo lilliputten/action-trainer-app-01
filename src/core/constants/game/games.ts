@@ -1,13 +1,21 @@
 import { SxProps } from '@mui/material';
 
-import { vw } from 'src/core/helpers/styles';
+import { percent } from 'src/core/helpers/styles';
 import { EGameType, EScenarioType, TGame } from 'src/core/types';
 
 const firstGameDefaultButtonSx: SxProps = {
-  left: vw(4),
-  top: vw(10),
-  width: vw(45.5),
-  height: vw(46),
+  /* // UNUSED: Relative, based on screen width
+   * left: vw(4),
+   * top: vw(10),
+   * width: vw(45.5),
+   * height: vw(46),
+   */
+  left: percent(4.5),
+  top: percent(18),
+  width: percent(44.5),
+  height: percent(80.5),
+  borderRadius: percent(12),
+  borderWidth: percent(5),
 };
 
 export const gamesList: TGame[] = [
@@ -25,7 +33,7 @@ export const gamesList: TGame[] = [
       },
       {
         id: EScenarioType.Irina,
-        selectButtonSx: { ...firstGameDefaultButtonSx, left: vw(50.5) },
+        selectButtonSx: { ...firstGameDefaultButtonSx, left: percent(50.7) },
         screens: [
           {
             // ...
