@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
-import { FullScreenPageLayout } from 'src/ui/layouts/FullScreenPageLayout';
+import { FullGameScreenPageLayout } from 'src/ui/layouts/FullGameScreenPageLayout';
 
 export function AppRootLayout() {
   return (
-    <FullScreenPageLayout>
+    <FullGameScreenPageLayout>
       <Outlet />
-    </FullScreenPageLayout>
+    </FullGameScreenPageLayout>
   );
 }

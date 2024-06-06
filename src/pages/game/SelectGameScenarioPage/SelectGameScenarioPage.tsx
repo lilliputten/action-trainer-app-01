@@ -4,16 +4,15 @@ import { observer } from 'mobx-react-lite';
 import { Box, ButtonBase } from '@mui/material';
 import classNames from 'classnames';
 
-import { EScenarioType } from 'src/core/types';
+import { EScenarioType, TGameRouterParams, defaultGameType } from 'src/core/types';
 import Video from 'src/assets/videos/1c-0-start.mp4';
 
-import { useAppSessionStore } from 'src/store/AppSessionStore';
 import { vw } from 'src/core/helpers/styles';
 import { animationTime, effectTime } from 'src/core/assets/scss';
-import { getScreenRoute } from 'src/core/helpers/routes';
+import { getGameRoute } from 'src/core/helpers/routes';
 import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
 
-import styles from './SelectScenarioPage.module.scss';
+import styles from './SelectGameScenarioPage.module.scss';
 
 const defaultButtonSx = {
   left: vw(4),
@@ -22,12 +21,10 @@ const defaultButtonSx = {
   height: vw(46),
 };
 
-export const SelectScenarioPage: React.FC = observer(() => {
-  const { game } = useParams();
-  console.log('[SelectScenarioPage]', game);
+export const SelectGameScenarioPage: React.FC = observer(() => {
+  const { game = defaultGameType } = useParams<TGameRouterParams>();
   const navigate = useNavigate();
   // TODO: Check `started` state if not in dev mode?
-  const appSessionStore = useAppSessionStore();
   const refVideo = React.useRef<HTMLVideoElement>(null);
   const [isActive, setActive] = React.useState(false);
   const startPlay = React.useCallback(() => {
@@ -60,15 +57,12 @@ export const SelectScenarioPage: React.FC = observer(() => {
     (event) => {
       const scenario = event.currentTarget.id as EScenarioType;
       setScenario(scenario);
-      appSessionStore.setScenario(scenario);
-      appSessionStore.setScreen(1); // From the 1st screen
-      const nextScreenRoute = getScreenRoute(scenario, 1, true);
-      console.log('[SelectScenarioPage:handleScenarioSelect]', nextScreenRoute);
+      const nextScreenRoute = getGameRoute(game, scenario, 1, true);
       setTimeout(() => {
         navigate(nextScreenRoute);
       }, effectTime);
     },
-    [appSessionStore, navigate],
+    [navigate, game],
   );
   const isFinished = !!scenario;
   return (
@@ -111,11 +105,6 @@ export const SelectScenarioPage: React.FC = observer(() => {
         ></ButtonBase>
       </Box>
       <Box className={classNames(styles.curtain)}></Box>
-      {/*
-      <Scrollable>
-        <Demo />
-      </Scrollable>
-      */}
     </ScreenWrapper>
   );
 });
