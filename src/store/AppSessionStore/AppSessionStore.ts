@@ -14,7 +14,7 @@ import {
   validMuiThemeModes,
   defaultMuiThemeMode,
   TUpdatableParameter,
-  EScenario,
+  EScenarioType,
 } from 'src/core/types';
 import { getSavedOrQueryParameter } from 'src/core/helpers/generic';
 
@@ -61,7 +61,7 @@ export class AppSessionStore {
 
   // User flow state...
   @observable started?: boolean = false;
-  @observable scenario?: EScenario;
+  @observable scenario?: EScenarioType;
   @observable screen?: number;
 
   // Settings...

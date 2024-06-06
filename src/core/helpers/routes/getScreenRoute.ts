@@ -1,7 +1,7 @@
-import { EScenario, defaultScenario } from 'src/core/types';
+import { EScenarioType, defaultScenarioType } from 'src/core/types';
 
 export function getScreenRoute(
-  scenario: EScenario = defaultScenario,
+  scenario: EScenarioType = defaultScenarioType,
   screen: number = 1,
   doRoot?: boolean,
 ) {

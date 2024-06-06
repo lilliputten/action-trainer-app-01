@@ -1,3 +1,4 @@
 export * from './TBuildInfo';
 export * from './TDemoComponent';
-export * from './TScenario';
+export * from './EGameType';
+export * from './EScenarioType';
