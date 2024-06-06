@@ -1,0 +1,6 @@
+Project: action-trainer-app-01
+Version: 0.0.1
+Branch: 1-minimal-working-layout
+Commit: c917773
+Fixed: 2024.06.06 04:47 +0300
+Built: 2024.06.06 04:47 +0300
