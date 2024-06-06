@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Box, BoxProps, IconButton, Stack } from '@mui/material';
+import { Box, IconButton, Stack } from '@mui/material';
 
 import { Fullscreen, FullscreenExit, Replay } from '@mui/icons-material';
 import classNames from 'classnames';
@@ -16,7 +16,7 @@ interface TProps extends TPropsWithChildrenAndClassName {
 }
 
 export const ScreenWrapper = observer<TProps, HTMLDivElement>(
-  (props, ref) => {
+  React.forwardRef((props, ref) => {
     const appSessionStore = useAppSessionStore();
     const { fullscreen } = appSessionStore;
     const { children, className } = props;
@@ -61,6 +61,5 @@ export const ScreenWrapper = observer<TProps, HTMLDivElement>(
         </Stack>
       </Box>
     );
-  },
-  { forwardRef: true },
+  }),
 );
