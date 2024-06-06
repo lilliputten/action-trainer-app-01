@@ -11,6 +11,8 @@ import { useAppSessionStore } from 'src/store/AppSessionStore';
 import { vw } from 'src/core/helpers/styles';
 import { animationTime, effectTime } from 'src/core/assets/scss';
 import { getScreenRoute } from 'src/core/helpers/routes';
+import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
+import { Scrollable } from 'src/ui/Basic';
 
 import styles from './SelectScenarioPage.module.scss';
 
@@ -69,7 +71,7 @@ export const SelectScenarioPage: React.FC = observer(() => {
   );
   const isFinished = !!scenario;
   return (
-    <Box
+    <ScreenWrapper
       className={classNames(
         styles.root,
         videoComplete && styles.videoComplete,
@@ -113,6 +115,6 @@ export const SelectScenarioPage: React.FC = observer(() => {
         <Demo />
       </Scrollable>
       */}
-    </Box>
+    </ScreenWrapper>
   );
 });

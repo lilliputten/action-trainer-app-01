@@ -7,14 +7,30 @@ $videoRedColor: #e41a4a;
   justify-content: flex-start;
   flex: 1;
   overflow: hidden;
+  transition: background $transitionTimeMs;
+  // background-color: $defaultBackgroundColor;
+  // opacity: 1;
+  // &.videoComplete {
+  //   background-color: color.mix($defaultBackgroundColor, black, 90%);
+  // }
+}
+
+.scrollableContainer {
+  min-height: 100%;
 }
 
 .video {
   // Set a little larger size to hide black frame line
-  width: 100.5%;
+  width: 100%;
   outline: unset;
   border: none;
   clip-path: inset(0px);
+  padding-bottom: 4vw;
+  transition: opacity $transitionTimeMs;
+  opacity: 1;
+  .videoComplete & {
+    opacity: .8;
+  }
 }
 
 .curtain,
