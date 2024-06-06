@@ -16,8 +16,6 @@ import { useContainerSize } from 'src/ui/hooks';
 import styles from './SelectGameScenarioPage.module.scss';
 import { getVideoSizeByRef } from 'src/core/helpers/video';
 
-const videoUrl = '/videos/1c-0-start.mp4';
-
 export const SelectGameScenarioPage: React.FC = observer(() => {
   const {
     ref: refVideo,
@@ -88,8 +86,9 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
   );
   const isFinished = !!scenario;
   // Create scenario buttons...
+  const gameData = gamesHash[gameId];
+  const { startVideoUrl } = gameData;
   const scenarioButtons = React.useMemo(() => {
-    const gameData = gamesHash[gameId];
     return gameData.scenarios.map((game) => {
       const { id, selectButtonSx, name } = game;
       return (
@@ -103,7 +102,7 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
         ></ButtonBase>
       );
     });
-  }, [gameId, handleScenarioSelect, scenario]);
+  }, [gameData, handleScenarioSelect, scenario]);
   return (
     <ScreenWrapper
       className={classNames(
@@ -115,7 +114,7 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
       )}
     >
       <video
-        src={videoUrl}
+        src={startVideoUrl}
         className={styles.video}
         preload="auto"
         onEnded={handleVideoEnd}

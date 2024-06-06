@@ -21,6 +21,7 @@ const firstGameDefaultButtonSx: SxProps = {
 export const gamesList: TGame[] = [
   {
     id: EGameType.First,
+    startVideoUrl: '/videos/1c/1c-0-start.mp4',
     scenarios: [
       {
         id: EScenarioType.Natasha,

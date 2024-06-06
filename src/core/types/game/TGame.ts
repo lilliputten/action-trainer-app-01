@@ -14,5 +14,6 @@ export interface TScenario {
 export type TGame = {
   id: EGameType;
   name?: string;
+  startVideoUrl: string;
   scenarios: TScenario[];
 };
