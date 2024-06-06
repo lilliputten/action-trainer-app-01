@@ -24,7 +24,7 @@ const cracoConfig = {
       plugin: CracoEnvPlugin,
       options: {
         variables: {
-          USE_MIRAGE_SERVER: process.env.USE_MIRAGE_SERVER,
+          USE_MIRAGE_SERVER: process.env['USE_MIRAGE_SERVER'] || false,
         },
       },
     },

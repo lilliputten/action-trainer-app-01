@@ -1,0 +1,94 @@
+$videoRedColor: #e41a4a;
+
+.root {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+  overflow: hidden;
+  transition: background $transitionTimeMs;
+  // background-color: $defaultBackgroundColor;
+  // opacity: 1;
+  // &.videoComplete {
+  //   background-color: color.mix($defaultBackgroundColor, black, 90%);
+  // }
+}
+
+.scrollableContainer {
+  min-height: 100%;
+}
+
+.video {
+  // Set a little larger size to hide black frame line
+  width: 100.5%;
+  outline: unset;
+  border: none;
+  clip-path: inset(0px);
+  padding-bottom: 4vw;
+  transition: opacity $transitionTimeMs;
+  opacity: 1;
+  .videoComplete & {
+    opacity: .8;
+  }
+}
+
+.curtain,
+.over {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition:
+    all $transitionTimeMs,
+    opacity $effectTimeMs,
+    background $effectTimeMs;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.over {
+  .videoComplete & {
+    opacity: 1;
+    background-color: color.change(black, $alpha: 0.3);
+  }
+}
+
+.curtain {
+  background-color: $videoBlueColor;
+  opacity: 1;
+  pointer-events: all;
+  .active & {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.button {
+  .videoComplete & {
+    pointer-events: all;
+  }
+  transition: all $transitionTimeMs;
+  &:global(.MuiButtonBase-root) {
+    border-radius: 5.5vw;
+    position: absolute;
+    border: 1vw dashed transparent;
+  }
+  &:hover {
+    border: 1vw dashed color.change($videoRedColor, $alpha: 0.5);
+  }
+  &:hover,
+  &.selected {
+    .videoEffectComplete & {
+      backdrop-filter: brightness(110%) contrast(110%);
+    }
+  }
+  &.selected {
+    border: 1vw solid color.change($videoRedColor, $alpha: 0.5);
+  }
+  &:active {
+    background-color: color.change($videoRedColor, $alpha: 0.2);
+    backdrop-filter: blur(0.5vw);
+  }
+}

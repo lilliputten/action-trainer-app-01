@@ -1,8 +1,8 @@
 {
   "name": "action-trainer-app-01",
-  "version": "0.0.0",
-  "timetag": "240605-0048",
-  "timestamp": "2024.06.05 00:48 +0300",
+  "version": "0.0.1",
+  "timetag": "240606-0447",
+  "timestamp": "2024.06.06 04:47 +0300",
   "changed": "2024.06.05, 23:18",
   "eslint-unused-rules": {
     "eqeqeq": [
@@ -98,6 +98,7 @@
     "react-toastify": "^9.1.3",
     "rimraf": "^5.0.5",
     "sass": "^1.69.5",
+    "screenfull": "^6.0.2",
     "serve": "^14.2.1",
     "stylelint": "^15.11.0",
     "stylelint-config-css-modules": "^4.3.0",
