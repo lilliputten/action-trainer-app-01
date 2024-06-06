@@ -10,9 +10,7 @@ export const DemoCheckDataStore: TDemoComponent = observer(() => {
     inited,
     finished,
     ready,
-    loading,
     error,
-    logged,
   } = appSessionStore;
   /* // UNUSED: Show data state
    * const {
@@ -27,8 +25,6 @@ export const DemoCheckDataStore: TDemoComponent = observer(() => {
       <p>inited: {String(inited)}</p>
       <p>finished: {String(finished)}</p>
       <p>ready: {String(ready)}</p>
-      <p>logged: {String(logged)}</p>
-      <p>loading: {String(loading)}</p>
       <p>error: {String(error)}</p>
       {/* // UNUSED: Show data state
       <p>testData: {getAppDataInfo(testData)}</p>

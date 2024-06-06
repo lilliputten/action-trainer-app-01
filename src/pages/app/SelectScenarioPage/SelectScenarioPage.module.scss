@@ -7,8 +7,6 @@ $videoRedColor: #e41a4a;
   justify-content: flex-start;
   flex: 1;
   overflow: hidden;
-  // background-color: $bgColor;
-  // box-shadow: inset 0 0 5px 5px $bgColor;
 }
 
 .video {
@@ -26,7 +24,10 @@ $videoRedColor: #e41a4a;
   right: 0;
   top: 0;
   bottom: 0;
-  transition: all $transitionTimeMs, opacity $effectTimeMs, background $effectTimeMs;
+  transition:
+    all $transitionTimeMs,
+    opacity $effectTimeMs,
+    background $effectTimeMs;
   pointer-events: none;
   opacity: 0;
 }
@@ -37,6 +38,7 @@ $videoRedColor: #e41a4a;
     background-color: color.change(black, $alpha: 0.3);
   }
 }
+
 .curtain {
   background-color: $videoBlueColor;
   opacity: 1;
@@ -58,12 +60,13 @@ $videoRedColor: #e41a4a;
     border: 1vw dashed transparent;
   }
   &:hover {
-    // background-color: color.change($videoRedColor, $alpha: 0.1);
     border: 1vw dashed color.change($videoRedColor, $alpha: 0.5);
   }
   &:hover,
   &.selected {
-    backdrop-filter: brightness(110%) contrast(110%);
+    .videoEffectComplete & {
+      backdrop-filter: brightness(110%) contrast(110%);
+    }
   }
   &.selected {
     border: 1vw solid color.change($videoRedColor, $alpha: 0.5);

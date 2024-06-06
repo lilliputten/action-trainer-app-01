@@ -60,6 +60,7 @@ export class AppSessionStore {
   @observable error?: Error;
 
   // User flow state...
+  @observable started?: boolean = false;
   @observable scenario?: EScenario;
   @observable screen?: number;
 
@@ -142,6 +143,10 @@ export class AppSessionStore {
     this.ready = ready;
   }
 
+  @action setStarted(started: typeof AppSessionStore.prototype.started) {
+    this.started = started;
+  }
+
   @action setScenario(scenario: typeof AppSessionStore.prototype.scenario) {
     this.scenario = scenario;
   }
@@ -172,6 +177,7 @@ export class AppSessionStore {
     this.ready = false;
     this.error = undefined;
 
+    this.started = false;
     this.scenario = undefined;
     this.screen = undefined;
 

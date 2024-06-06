@@ -7,4 +7,5 @@ export const scenarios = [
   EScenario.N,
   EScenario.I,
 ] as const;
-export type TScenario = (typeof scenarios)[number];
+// export type TScenario = (typeof scenarios)[number];
+export const defaultScenario = scenarios[0];
