@@ -10,15 +10,15 @@ import { useAppSessionStore } from 'src/store';
 // import { HelpModal } from 'src/components/Help/HelpModal';
 import { Scrollable } from 'src/ui/Basic';
 
-import styles from './FullScreenPageLayout.module.scss';
+import styles from './FullGameScreenPageLayout.module.scss';
 
-export interface TFullScreenPageLayoutProps {
+export interface TFullGameScreenPageLayoutProps {
   className?: string;
   children?: React.ReactNode;
   scrollable?: boolean;
 }
 
-export const FullScreenPageLayout: React.FC<TFullScreenPageLayoutProps> = observer(
+export const FullGameScreenPageLayout: React.FC<TFullGameScreenPageLayoutProps> = observer(
   (props): JSX.Element => {
     // NOTE: Get props from nextjs (as `pageProps`)
     const { className, children, scrollable } = props;
@@ -28,7 +28,7 @@ export const FullScreenPageLayout: React.FC<TFullScreenPageLayoutProps> = observ
      * const location = useLocation();
      * const { pathname } = location;
      * React.useEffect(() => {
-     *   console.log('[FullScreenPageLayout:Effect:pathname]', pathname, {
+     *   console.log('[FullGameScreenPageLayout:Effect:pathname]', pathname, {
      *     location,
      *   });
      * }, [pathname, location]);

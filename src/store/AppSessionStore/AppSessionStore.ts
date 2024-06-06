@@ -14,7 +14,7 @@ import {
   validMuiThemeModes,
   defaultMuiThemeMode,
   TUpdatableParameter,
-  EScenario,
+  // EScenarioType,
 } from 'src/core/types';
 import { getSavedOrQueryParameter } from 'src/core/helpers/generic';
 
@@ -59,10 +59,10 @@ export class AppSessionStore {
   @observable ready: boolean = false;
   @observable error?: Error;
 
-  // User flow state...
-  @observable started?: boolean = false;
-  @observable scenario?: EScenario;
-  @observable screen?: number;
+  // // User flow state...
+  // @observable started?: boolean = false;
+  // @observable scenario?: EScenarioType;
+  // @observable screen?: number;
 
   // Settings...
 
@@ -144,17 +144,17 @@ export class AppSessionStore {
     this.ready = ready;
   }
 
-  @action setStarted(started: typeof AppSessionStore.prototype.started) {
-    this.started = started;
-  }
-
-  @action setScenario(scenario: typeof AppSessionStore.prototype.scenario) {
-    this.scenario = scenario;
-  }
-
-  @action setScreen(screen: typeof AppSessionStore.prototype.screen) {
-    this.screen = screen;
-  }
+  // @action setStarted(started: typeof AppSessionStore.prototype.started) {
+  //   this.started = started;
+  // }
+  //
+  // @action setScenario(scenario: typeof AppSessionStore.prototype.scenario) {
+  //   this.scenario = scenario;
+  // }
+  //
+  // @action setScreen(screen: typeof AppSessionStore.prototype.screen) {
+  //   this.screen = screen;
+  // }
 
   @action setError(error: typeof AppSessionStore.prototype.error) {
     this.error = error;
@@ -182,9 +182,9 @@ export class AppSessionStore {
     this.ready = false;
     this.error = undefined;
 
-    this.started = false;
-    this.scenario = undefined;
-    this.screen = undefined;
+    // this.started = false;
+    // this.scenario = undefined;
+    // this.screen = undefined;
 
     // Reset settings?
     this.clearSettings();

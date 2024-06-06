@@ -29,7 +29,7 @@ $videoRedColor: #e41a4a;
   transition: opacity $transitionTimeMs;
   opacity: 1;
   .videoComplete & {
-    opacity: .8;
+    opacity: 0.8;
   }
 }
 

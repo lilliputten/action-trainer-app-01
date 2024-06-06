@@ -1,2 +1,2 @@
 export * from './getNextScreenRoute';
-export * from './getScreenRoute';
+export * from './getGameRoute';
