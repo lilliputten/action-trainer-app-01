@@ -1,10 +1,10 @@
 export enum EScenarioType {
-  N = 'N',
-  I = 'I',
+  Natasha = 'natasha',
+  Irina = 'irina',
 }
 export const scenarioTypes = [
   // prettier-ignore
-  EScenarioType.N,
-  EScenarioType.I,
+  EScenarioType.Natasha,
+  EScenarioType.Irina,
 ] as const;
 export const defaultScenarioType = scenarioTypes[0];

@@ -5,7 +5,6 @@ import { Box, ButtonBase } from '@mui/material';
 import classNames from 'classnames';
 
 import { EScenarioType, TGameRouterParams, defaultGameType } from 'src/core/types';
-import Video from 'src/assets/videos/1c-0-start.mp4';
 
 import { vw } from 'src/core/helpers/styles';
 import { animationTime, effectTime } from 'src/core/assets/scss';
@@ -13,6 +12,8 @@ import { getGameRoute } from 'src/core/helpers/routes';
 import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
 
 import styles from './SelectGameScenarioPage.module.scss';
+
+const videoUrl = '/videos/1c-0-start.mp4';
 
 const defaultButtonSx = {
   left: vw(4),
@@ -76,7 +77,7 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
       )}
     >
       <video
-        src={Video}
+        src={videoUrl}
         className={styles.video}
         preload="auto"
         onEnded={handleVideoEnd}
@@ -87,16 +88,16 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
       ></video>
       <Box className={classNames(styles.over)}>
         <ButtonBase
-          id={EScenarioType.N}
-          className={classNames(styles.button, scenario === EScenarioType.N && styles.selected)}
+          id={EScenarioType.Natasha}
+          className={classNames(styles.button, scenario === EScenarioType.Natasha && styles.selected)}
           onClick={handleScenarioSelect}
           sx={{
             ...defaultButtonSx,
           }}
         ></ButtonBase>
         <ButtonBase
-          id={EScenarioType.I}
-          className={classNames(styles.button, scenario === EScenarioType.I && styles.selected)}
+          id={EScenarioType.Irina}
+          className={classNames(styles.button, scenario === EScenarioType.Irina && styles.selected)}
           onClick={handleScenarioSelect}
           sx={{
             ...defaultButtonSx,
