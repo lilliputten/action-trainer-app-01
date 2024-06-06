@@ -20,6 +20,7 @@ export const routes: RouteObject[] = [
     element: <AppRootLayout />,
     children: [
       { index: true, element: <StartPage /> },
+      { path: 'start/:game', element: <StartPage /> },
       { path: 'select-scenario', element: <SelectScenarioPage /> },
       { path: 'screen/:scenario/:screen', element: <ScreenPage /> },
       { path: demoRoute, element: <DemoPage /> }, // NOTE: Debug only!
