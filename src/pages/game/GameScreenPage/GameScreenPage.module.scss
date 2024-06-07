@@ -8,6 +8,12 @@
   transition: background $transitionTimeMs;
 }
 
+.active,
+.finished,
+.answered {
+  /*!KEEP*/
+}
+
 .video {
   outline: unset;
   border: none;
@@ -18,8 +24,6 @@
   .videoComplete & {
     opacity: 0.8;
   }
-  // DEBUG
-  // border: 1px solid red;
   max-width: 100%;
   max-height: 100%;
 }
@@ -81,22 +85,28 @@
     position: absolute;
     border: $borderWidth dashed transparent;
   }
+  // &:global(.MuiButtonBase-root), // DEBUG: Show all frames
   &:hover {
-    border: $borderWidth dashed color.change($videoRedColor, $alpha: 0.5);
+    border: $borderWidth dashed color.change($videoBlueColor, $alpha: 0.5);
   }
   $hoverFilters: brightness(110%) contrast(110%);
   $blurFilter: blur(0.2vmin);
-  &:hover,
-  &.selected {
+  &:hover {
     .videoEffectComplete & {
       backdrop-filter: $hoverFilters;
     }
   }
+  &.correct {
+    border: $borderWidth dashed color.change($successColor, $alpha: 0.5);
+  }
   &.selected {
     border: $borderWidth solid color.change($videoRedColor, $alpha: 0.5);
+    &.correct {
+      border: $borderWidth solid color.change($successColor, $alpha: 0.5);
+  }
   }
   &:active {
-    background-color: color.change($videoRedColor, $alpha: 0.2);
+    background-color: color.change($videoBlueColor, $alpha: 0.2);
     backdrop-filter: $blurFilter;
     &:hover {
       backdrop-filter: $hoverFilters $blurFilter;

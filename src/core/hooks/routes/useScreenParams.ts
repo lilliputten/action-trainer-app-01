@@ -12,7 +12,7 @@ interface TScreenParamsOptions {
 export interface TScreenParamsResult {
   gameId: EGameType;
   scenarioId: EScenarioType;
-  screenId: number;
+  screenNo: number;
 }
 
 export function useScreenParams(opts: TScreenParamsOptions | undefined = undefined) {
@@ -20,7 +20,7 @@ export function useScreenParams(opts: TScreenParamsOptions | undefined = undefin
   // Eg page url: /game/first/irina/1
   const navigate = useNavigate();
   const { game: gameId, scenario: scenarioId, screen } = useParams<TGameRouterParams>();
-  const screenId = Number(screen);
+  const screenNo = Number(screen);
   React.useEffect(() => {
     if (!gameId) {
       if (!opts?.allowNoGame) {
@@ -32,11 +32,11 @@ export function useScreenParams(opts: TScreenParamsOptions | undefined = undefin
         return navigate(`/game/${gameId}`);
       }
     }
-    if (!screenId) {
+    if (!screenNo) {
       if (!opts?.allowNoScreen) {
         return navigate(`/game/${gameId}`);
       }
     }
-  }, [gameId, scenarioId, screenId, navigate, opts]);
-  return { gameId, scenarioId, screenId };
+  }, [gameId, scenarioId, screenNo, navigate, opts]);
+  return { gameId, scenarioId, screenNo };
 }

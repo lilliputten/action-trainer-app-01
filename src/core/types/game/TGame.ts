@@ -2,14 +2,17 @@ import { SxProps } from '@mui/material';
 
 import { EGameType, EScenarioType } from 'src/core/types/game';
 
+export interface TAnswer {
+  text?: string;
+  isCorrect?: boolean;
+  buttonSx?: SxProps;
+}
+
 export interface TScreen {
   videoUrl: string;
   finalSplashUrl: string;
-  buttons: {
-    text?: string;
-    sx?: SxProps;
-    correct?: boolean;
-  };
+  answers: TAnswer[];
+  finalComment?: string;
 }
 
 export interface TScenario {
