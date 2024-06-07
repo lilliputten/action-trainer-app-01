@@ -5,6 +5,11 @@ import { EGameType, EScenarioType } from 'src/core/types/game';
 export interface TScreen {
   videoUrl: string;
   finalSplashUrl: string;
+  buttons: {
+    text?: string;
+    sx?: SxProps;
+    correct?: boolean;
+  };
 }
 
 export interface TScenario {

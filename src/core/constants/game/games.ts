@@ -21,8 +21,8 @@ const defaultGameScenarioButtonSx: SxProps = {
 /* // XXX: Conversion patterns:
  * '<,'>s/^.*r\.mp.*\n//
  * '<,'>s/\(.*\.mp4\)\n\(.*\.jpg\)/{\rvideoUrl: 'PATH\/\1',\rfinalSplashUrl: 'PATH\/\2',\r},/
- * '<,'>s/PATH/videos\/1c\/natasha/
- * '<,'>s/PATH/videos\/1c\/irina/
+ * '<,'>s/PATH/\/videos\/1c\/natasha/
+ * '<,'>s/PATH/\/videos\/1c\/irina/
  */
 
 export const gamesList: TGame[] = [
@@ -35,24 +35,24 @@ export const gamesList: TGame[] = [
         selectButtonSx: { ...defaultGameScenarioButtonSx },
         screens: [
           {
-            videoUrl: 'videos/1c/natasha/1c-10.mp4',
-            finalSplashUrl: 'videos/1c/natasha/1c-10r.jpg',
+            videoUrl: '/videos/1c/natasha/1c-1.mp4',
+            finalSplashUrl: '/videos/1c/natasha/1c-1r.jpg',
           },
           {
-            videoUrl: 'videos/1c/natasha/1c-6.mp4',
-            finalSplashUrl: 'videos/1c/natasha/1c-6r.jpg',
+            videoUrl: '/videos/1c/natasha/1c-2.mp4',
+            finalSplashUrl: '/videos/1c/natasha/1c-2r.jpg',
           },
           {
-            videoUrl: 'videos/1c/natasha/1c-7.mp4',
-            finalSplashUrl: 'videos/1c/natasha/1c-7r.jpg',
+            videoUrl: '/videos/1c/natasha/1c-3.mp4',
+            finalSplashUrl: '/videos/1c/natasha/1c-3r.jpg',
           },
           {
-            videoUrl: 'videos/1c/natasha/1c-8.mp4',
-            finalSplashUrl: 'videos/1c/natasha/1c-8r.jpg',
+            videoUrl: '/videos/1c/natasha/1c-4.mp4',
+            finalSplashUrl: '/videos/1c/natasha/1c-4r.jpg',
           },
           {
-            videoUrl: 'videos/1c/natasha/1c-9.mp4',
-            finalSplashUrl: 'videos/1c/natasha/1c-9r.jpg',
+            videoUrl: '/videos/1c/natasha/1c-5.mp4',
+            finalSplashUrl: '/videos/1c/natasha/1c-5r.jpg',
           },
         ],
       },
@@ -61,24 +61,24 @@ export const gamesList: TGame[] = [
         selectButtonSx: { ...defaultGameScenarioButtonSx, left: percent(50.7) },
         screens: [
           {
-            videoUrl: 'videos/1c/irina/1c-1.mp4',
-            finalSplashUrl: 'videos/1c/irina/1c-1r.jpg',
+            videoUrl: '/videos/1c/irina/1c-10.mp4',
+            finalSplashUrl: '/videos/1c/irina/1c-10r.jpg',
           },
           {
-            videoUrl: 'videos/1c/irina/1c-2.mp4',
-            finalSplashUrl: 'videos/1c/irina/1c-2r.jpg',
+            videoUrl: '/videos/1c/irina/1c-6.mp4',
+            finalSplashUrl: '/videos/1c/irina/1c-6r.jpg',
           },
           {
-            videoUrl: 'videos/1c/irina/1c-3.mp4',
-            finalSplashUrl: 'videos/1c/irina/1c-3r.jpg',
+            videoUrl: '/videos/1c/irina/1c-7.mp4',
+            finalSplashUrl: '/videos/1c/irina/1c-7r.jpg',
           },
           {
-            videoUrl: 'videos/1c/irina/1c-4.mp4',
-            finalSplashUrl: 'videos/1c/irina/1c-4r.jpg',
+            videoUrl: '/videos/1c/irina/1c-8.mp4',
+            finalSplashUrl: '/videos/1c/irina/1c-8r.jpg',
           },
           {
-            videoUrl: '1c-5.mp4',
-            finalSplashUrl: '1c-5r.jpg',
+            videoUrl: '/videos/1c/irina/1c-9.mp4',
+            finalSplashUrl: '/videos/1c/irina/1c-9r.jpg',
           },
         ],
       },
