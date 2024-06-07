@@ -91,6 +91,7 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
     },
     [navigate, gameId],
   );
+  /** Has all screen activities finished? */
   const isFinished = !!scenario;
   // Get game data...
   const gameData = gamesHash[gameId];
@@ -117,7 +118,7 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
         styles.root,
         videoComplete && styles.videoComplete,
         videoEffectComplete && styles.videoEffectComplete,
-        scenario && styles.finished,
+        isFinished && styles.finished,
         isActive && !isFinished && styles.active,
       )}
     >
