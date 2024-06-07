@@ -10,8 +10,8 @@ export interface TAnswer {
 
 export interface TScreen {
   videoUrl: string;
-  finalSplashUrl: string;
-  answers: TAnswer[];
+  // finalSplashUrl: string;
+  answers?: TAnswer[];
   finalComment?: string;
 }
 

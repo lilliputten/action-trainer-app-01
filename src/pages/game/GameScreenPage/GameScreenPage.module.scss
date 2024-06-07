@@ -8,10 +8,26 @@
   transition: background $transitionTimeMs;
 }
 
+.overButtons,
 .active,
 .finished,
 .answered {
   /*!KEEP*/
+}
+
+.overFinalComment {
+  // Final comment
+  // border: 1px dashed green; // DEBUG
+  position: absolute;
+  margin: 0;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: all;
+  gap: 4vmin;
 }
 
 .video {
@@ -63,6 +79,10 @@
     opacity: 1;
     background-color: color.change(black, $alpha: 0.3);
   }
+  .answered & {
+    opacity: 1;
+    background-color: color.change(black, $alpha: 0.7);
+  }
 }
 
 .curtain {
@@ -75,41 +95,100 @@
   }
 }
 
+$buttonBorderWidth: 1vmin;
+$buttonHoverFilters: brightness(110%) contrast(110%);
+$buttonBlurFilters: blur(0.2vmin);
+
 .button {
-  .videoComplete & {
-    pointer-events: all;
-  }
   transition: all $transitionTimeMs;
-  $borderWidth: 1vmin;
   &:global(.MuiButtonBase-root) {
-    position: absolute;
-    border: $borderWidth dashed transparent;
+    border: $buttonBorderWidth dashed transparent;
   }
   // &:global(.MuiButtonBase-root), // DEBUG: Show all frames
   &:hover {
-    border: $borderWidth dashed color.change($videoBlueColor, $alpha: 0.5);
+    border: $buttonBorderWidth dashed color.change($videoBlueColor, $alpha: 0.5);
   }
-  $hoverFilters: brightness(110%) contrast(110%);
-  $blurFilter: blur(0.2vmin);
-  &:hover {
+  &:hover,
+  &.selected {
     .videoEffectComplete & {
-      backdrop-filter: $hoverFilters;
+      backdrop-filter: $buttonHoverFilters;
     }
   }
+  .videoComplete:not(.answered) & {
+    pointer-events: all;
+  }
+  &:global(.MuiButtonBase-root) {
+    position: absolute;
+  }
   &.correct {
-    border: $borderWidth dashed color.change($successColor, $alpha: 0.5);
+    border: $buttonBorderWidth dashed color.change($successColor, $alpha: 0.5);
+    backdrop-filter: $buttonHoverFilters;
   }
   &.selected {
-    border: $borderWidth solid color.change($videoRedColor, $alpha: 0.5);
+    border: $buttonBorderWidth solid color.change($videoRedColor, $alpha: 0.5);
     &.correct {
-      border: $borderWidth solid color.change($successColor, $alpha: 0.5);
-  }
+      border: $buttonBorderWidth solid color.change($successColor, $alpha: 0.5);
+    }
   }
   &:active {
     background-color: color.change($videoBlueColor, $alpha: 0.2);
-    backdrop-filter: $blurFilter;
+    backdrop-filter: $buttonBlurFilters;
     &:hover {
-      backdrop-filter: $hoverFilters $blurFilter;
+      backdrop-filter: $buttonHoverFilters $buttonBlurFilters;
+    }
+  }
+}
+
+$textShadowSize: 0.3vmin;
+
+.finalComment {
+  // flex: 1;
+  // font-size: 150%;
+  // font-weight: bold;
+  color: #fff;
+  text-shadow: $textShadowSize $textShadowSize color.change(black, $alpha: 0.4);
+}
+
+.finalButton {
+  &:global(.MuiButtonBase-root) {
+    overflow: hidden;
+    &:before {
+      background: linear-gradient(165deg, transparent 0%, black 100%);
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      opacity: 0.5;
+      transition: all $transitionTimeMs;
+    }
+    transition: all $transitionTimeMs;
+    $bgColor: $videoBlueColor;
+    background-color: $bgColor;
+    border: 0.5vmin solid color.change(white, $alpha: 0.8);
+    font-size: 3vmin;
+    color: color.mix(white, $bgColor, 100%);
+    text-shadow: $textShadowSize $textShadowSize color.change(black, $alpha: 0.4);
+    padding: 1vmin 4vmin;
+    border-radius: 10vmin;
+    box-shadow:
+      0.2vmin 0.2vmin 0 0.3vmin color.change(black, $alpha: 0.3),
+      inset 0.1vmin 0.1vmin 0 0.2vmin color.change(black, $alpha: 0.2);
+    opacity: 0.9;
+    &:hover {
+      opacity: 1;
+      &:before {
+        opacity: 0.3;
+      }
+    }
+    &:active {
+      &:before {
+        opacity: 0.9;
+      }
+    }
+    :global(.MuiSvgIcon-root) {
+      font-size: 1em;
     }
   }
 }

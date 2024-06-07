@@ -128,27 +128,12 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
         preload="auto"
         onEnded={handleVideoEnd}
         ref={refVideo}
-        // controls
-        // autoPlay
         muted
       ></video>
       <Box className={classNames(styles.overContainer)}>
         <Box ref={refBox} className={classNames(styles.overBox)}>
           {/* Scenario buttons */}
           {scenarioButtons}
-          {/* // Button demo
-          <ButtonBase
-            id={EScenarioType.Natasha}
-            className={classNames(
-              styles.button,
-              scenario === EScenarioType.Natasha && styles.selected,
-            )}
-            onClick={handleScenarioSelect}
-            sx={{
-              ...defaultButtonSx,
-            }}
-          ></ButtonBase>
-          */}
         </Box>
       </Box>
       <Box className={classNames(styles.curtain)}></Box>

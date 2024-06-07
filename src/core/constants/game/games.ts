@@ -37,7 +37,7 @@ const defaultRightAnswerSx: SxProps = {
  * // Urls:
  *
  * '<,'>s/^.*r\.mp.*\n//
- * '<,'>s/\(.*\.mp4\)\n\(.*\.jpg\)/{\rvideoUrl: 'PATH\/\1',\rfinalSplashUrl: 'PATH\/\2',\r},/
+ * '<,'>s/\(.*\.mp4\)\n\(.*\.jpg\)/{\rvideoUrl: 'PATH\/\1',\r// finalSplashUrl: 'PATH\/\2',\r},/
  * '<,'>s/PATH/\/videos\/1c\/natasha/
  * '<,'>s/PATH/\/videos\/1c\/irina/
  *
@@ -57,7 +57,7 @@ export const gamesList: TGame[] = [
         screens: [
           {
             videoUrl: '/videos/1c/natasha/1c-1.mp4',
-            finalSplashUrl: '/videos/1c/natasha/1c-1r.jpg',
+            // finalSplashUrl: '/videos/1c/natasha/1c-1r.jpg',
             answers: [
               {
                 isCorrect: true,
@@ -82,35 +82,116 @@ export const gamesList: TGame[] = [
           },
           {
             videoUrl: '/videos/1c/natasha/1c-2.mp4',
-            finalSplashUrl: '/videos/1c/natasha/1c-2r.jpg',
+            // finalSplashUrl: '/videos/1c/natasha/1c-2r.jpg',
+            finalComment:
+              'Если давление выше 140/90, нужно вызывать скорую. Иначе такое состояние  негативно скажется на беременности.',
             answers: [
-              { text: 'Сказать врачу на плановом приеме', buttonSx: { ...defaultAnswerSx } },
-              { isCorrect: true, text: 'Вызвать скорую', buttonSx: { ...defaultAnswerSx } },
+              {
+                text: 'Сказать врачу на плановом приеме',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  left: percent(3.5),
+                  width: percent(46.2),
+                  top: percent(72),
+                  height: percent(24),
+                  borderRadius: '3vmax',
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Вызвать скорую',
+                buttonSx: {
+                  ...defaultRightAnswerSx,
+                  left: percent(50.2),
+                  width: percent(46.2),
+                  top: percent(72),
+                  height: percent(24),
+                  borderRadius: '3vmax',
+                },
+              },
             ],
           },
           {
             videoUrl: '/videos/1c/natasha/1c-3.mp4',
-            finalSplashUrl: '/videos/1c/natasha/1c-3r.jpg',
+            // finalSplashUrl: '/videos/1c/natasha/1c-3r.jpg',
+            finalComment:
+              'Так как после приема пищи давление можно измерять только через 1-2 часа, по утрам первым делом лучше измерить давление. Чтобы не забыть об этом и сэкономить время, положите тонометр рядом с кроватью. Так вы сможете измерять давление сразу после пробуждения.',
             answers: [
-              { text: 'Поесть', buttonSx: { ...defaultAnswerSx } },
-              { isCorrect: true, text: 'Измерить давление', buttonSx: { ...defaultAnswerSx } },
+              {
+                text: 'Поесть',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  left: percent(11),
+                  width: percent(28.7),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Измерить давление',
+                buttonSx: {
+                  ...defaultRightAnswerSx,
+                  left: percent(47),
+                  width: percent(42),
+                },
+              },
             ],
           },
           {
             videoUrl: '/videos/1c/natasha/1c-4.mp4',
-            finalSplashUrl: '/videos/1c/natasha/1c-4r.jpg',
+            // finalSplashUrl: '/videos/1c/natasha/1c-4r.jpg',
+            finalComment: 'Перед измерением давления убирайте одежду с выбранной руки.',
             answers: [
-              { text: 'Да, можно мерить давление', buttonSx: { ...defaultAnswerSx } },
-              { isCorrect: true, text: 'Нет, есть ошибка', buttonSx: { ...defaultAnswerSx } },
+              {
+                text: 'Да, можно мерить давление',
+                buttonSx: { ...defaultAnswerSx, left: percent(5.5), width: percent(53) },
+              },
+              {
+                isCorrect: true,
+                text: 'Нет, есть ошибка',
+                buttonSx: { ...defaultAnswerSx, left: percent(60.5), width: percent(36) },
+              },
             ],
           },
           {
             videoUrl: '/videos/1c/natasha/1c-5.mp4',
-            finalSplashUrl: '/videos/1c/natasha/1c-5r.jpg',
+            // finalSplashUrl: '/videos/1c/natasha/1c-5r.jpg',
+            finalComment:
+              'При беременности нормальным считается давление до 130/85 мм рт. ст. Это стандартная норма, но у вас может быть другая. Проконсультируйтесь с врачом. Даже незначительное повышение относительно вашего обычного показателя на 10 мм рт. ст. требует внимания.',
             answers: [
-              { isCorrect: true, text: 'Давление в норме', buttonSx: { ...defaultAnswerSx } },
-              { text: 'Это нормальное высокое давление', buttonSx: { ...defaultAnswerSx } },
-              { text: 'Это высокое артериальное давление', buttonSx: { ...defaultAnswerSx } },
+              {
+                isCorrect: true,
+                text: 'Давление в норме',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  borderRadius: '2vmax',
+                  top: percent(73),
+                  height: percent(22),
+                  left: percent(0),
+                  width: percent(20.6),
+                },
+              },
+              {
+                text: 'Это нормальное высокое давление',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  borderRadius: '2vmax',
+                  top: percent(73),
+                  height: percent(22),
+                  left: percent(20.3),
+                  width: percent(35),
+                },
+              },
+              {
+                text: 'Это высокое артериальное давление',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  borderRadius: '2vmax',
+                  top: percent(73),
+                  height: percent(22),
+                  left: percent(54.9),
+                  width: percent(45),
+                },
+              },
             ],
           },
         ],
@@ -120,52 +201,52 @@ export const gamesList: TGame[] = [
         selectButtonSx: { ...defaultGameScenarioButtonSx, left: percent(50.7) },
         screens: [
           {
-            videoUrl: '/videos/1c/irina/1c-10.mp4',
-            finalSplashUrl: '/videos/1c/irina/1c-10r.jpg',
-            answers: [
-              { text: 'Ирина права', buttonSx: { ...defaultAnswerSx } },
-              { isCorrect: true, text: ' Ирина не права', buttonSx: { ...defaultAnswerSx } },
-            ],
-          },
-          {
             videoUrl: '/videos/1c/irina/1c-6.mp4',
-            finalSplashUrl: '/videos/1c/irina/1c-6r.jpg',
-            answers: [
-              { isCorrect: true, text: 'Пульс слишком частый', buttonSx: { ...defaultAnswerSx } },
-              { text: 'Пульс редкий', buttonSx: { ...defaultAnswerSx } },
-            ],
+            /* answers: [
+             *   { text: 'Ирина права', buttonSx: { ...defaultAnswerSx } },
+             *   { isCorrect: true, text: ' Ирина не права', buttonSx: { ...defaultAnswerSx } },
+             * ],
+             */
           },
           {
             videoUrl: '/videos/1c/irina/1c-7.mp4',
-            finalSplashUrl: '/videos/1c/irina/1c-7r.jpg',
-            answers: [
-              { text: 'Показатели в норме', buttonSx: { ...defaultAnswerSx } },
-              {
-                isCorrect: true,
-                text: 'Есть отклонение от нормы',
-                buttonSx: { ...defaultAnswerSx },
-              },
-            ],
+            /* answers: [
+             *   { isCorrect: true, text: 'Пульс слишком частый', buttonSx: { ...defaultAnswerSx } },
+             *   { text: 'Пульс редкий', buttonSx: { ...defaultAnswerSx } },
+             * ],
+             */
           },
           {
             videoUrl: '/videos/1c/irina/1c-8.mp4',
-            finalSplashUrl: '/videos/1c/irina/1c-8r.jpg',
-            answers: [
-              { text: 'Да, это целесообразно', buttonSx: { ...defaultAnswerSx } },
-              {
-                isCorrect: true,
-                text: 'Нет, это не имеет смысла',
-                buttonSx: { ...defaultAnswerSx },
-              },
-            ],
+            /* answers: [
+             *   { text: 'Показатели в норме', buttonSx: { ...defaultAnswerSx } },
+             *   {
+             *     isCorrect: true,
+             *     text: 'Есть отклонение от нормы',
+             *     buttonSx: { ...defaultAnswerSx },
+             *   },
+             * ],
+             */
           },
           {
             videoUrl: '/videos/1c/irina/1c-9.mp4',
-            finalSplashUrl: '/videos/1c/irina/1c-9r.jpg',
-            answers: [
-              { text: 'Да, нужно срочно вызывать врача', buttonSx: { ...defaultAnswerSx } },
-              { isCorrect: true, text: 'Нет, скорая не нужна', buttonSx: { ...defaultAnswerSx } },
-            ],
+            /* answers: [
+             *   { text: 'Да, это целесообразно', buttonSx: { ...defaultAnswerSx } },
+             *   {
+             *     isCorrect: true,
+             *     text: 'Нет, это не имеет смысла',
+             *     buttonSx: { ...defaultAnswerSx },
+             *   },
+             * ],
+             */
+          },
+          {
+            videoUrl: '/videos/1c/irina/1c-10.mp4',
+            /* answers: [
+             *   { text: 'Да, нужно срочно вызывать врача', buttonSx: { ...defaultAnswerSx } },
+             *   { isCorrect: true, text: 'Нет, скорая не нужна', buttonSx: { ...defaultAnswerSx } },
+             * ],
+             */
           },
         ],
       },
