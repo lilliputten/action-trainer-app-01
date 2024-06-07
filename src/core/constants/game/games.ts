@@ -3,7 +3,7 @@ import { SxProps } from '@mui/material';
 import { percent } from 'src/core/helpers/styles';
 import { EGameType, EScenarioType, TGame } from 'src/core/types';
 
-const firstGameDefaultButtonSx: SxProps = {
+const defaultGameScenarioButtonSx: SxProps = {
   /* // UNUSED: Relative, based on screen width
    * left: vw(4),
    * top: vw(10),
@@ -18,6 +18,13 @@ const firstGameDefaultButtonSx: SxProps = {
   borderWidth: percent(5),
 };
 
+/* // XXX: Conversion patterns:
+ * '<,'>s/^.*r\.mp.*\n//
+ * '<,'>s/\(.*\.mp4\)\n\(.*\.jpg\)/{\rvideoUrl: 'PATH\/\1',\rfinalSplashUrl: 'PATH\/\2',\r},/
+ * '<,'>s/PATH/videos\/1c\/natasha/
+ * '<,'>s/PATH/videos\/1c\/irina/
+ */
+
 export const gamesList: TGame[] = [
   {
     id: EGameType.First,
@@ -25,19 +32,53 @@ export const gamesList: TGame[] = [
     scenarios: [
       {
         id: EScenarioType.Natasha,
-        selectButtonSx: { ...firstGameDefaultButtonSx },
+        selectButtonSx: { ...defaultGameScenarioButtonSx },
         screens: [
           {
-            // ...
+            videoUrl: 'videos/1c/natasha/1c-10.mp4',
+            finalSplashUrl: 'videos/1c/natasha/1c-10r.jpg',
+          },
+          {
+            videoUrl: 'videos/1c/natasha/1c-6.mp4',
+            finalSplashUrl: 'videos/1c/natasha/1c-6r.jpg',
+          },
+          {
+            videoUrl: 'videos/1c/natasha/1c-7.mp4',
+            finalSplashUrl: 'videos/1c/natasha/1c-7r.jpg',
+          },
+          {
+            videoUrl: 'videos/1c/natasha/1c-8.mp4',
+            finalSplashUrl: 'videos/1c/natasha/1c-8r.jpg',
+          },
+          {
+            videoUrl: 'videos/1c/natasha/1c-9.mp4',
+            finalSplashUrl: 'videos/1c/natasha/1c-9r.jpg',
           },
         ],
       },
       {
         id: EScenarioType.Irina,
-        selectButtonSx: { ...firstGameDefaultButtonSx, left: percent(50.7) },
+        selectButtonSx: { ...defaultGameScenarioButtonSx, left: percent(50.7) },
         screens: [
           {
-            // ...
+            videoUrl: 'videos/1c/irina/1c-1.mp4',
+            finalSplashUrl: 'videos/1c/irina/1c-1r.jpg',
+          },
+          {
+            videoUrl: 'videos/1c/irina/1c-2.mp4',
+            finalSplashUrl: 'videos/1c/irina/1c-2r.jpg',
+          },
+          {
+            videoUrl: 'videos/1c/irina/1c-3.mp4',
+            finalSplashUrl: 'videos/1c/irina/1c-3r.jpg',
+          },
+          {
+            videoUrl: 'videos/1c/irina/1c-4.mp4',
+            finalSplashUrl: 'videos/1c/irina/1c-4r.jpg',
+          },
+          {
+            videoUrl: '1c-5.mp4',
+            finalSplashUrl: '1c-5r.jpg',
           },
         ],
       },

@@ -1,24 +1,35 @@
-import { useLocation, useParams } from 'react-router-dom';
+import React from 'react';
+import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
+
 import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
+import { useScreenParams } from 'src/core/hooks/routes';
+
+import styles from './GameScreenPage.module.scss';
 
 export function GameScreenPage() {
-  const { game, scenario, screen } = useParams();
-  const location = useLocation();
-  const { pathname } = location;
+  // Eg page url: /game/first/irina/1
+  const navigate = useNavigate();
+  const { gameId, scenarioId, screenId } = useScreenParams();
   return (
-    <ScreenWrapper>
+    <ScreenWrapper
+      className={classNames(
+        styles.root,
+        // videoComplete && styles.videoComplete,
+        // videoEffectComplete && styles.videoEffectComplete,
+        // scenario && styles.finished,
+        // isActive && !isFinished && styles.active,
+      )}
+    >
       <h1>Screen page</h1>
       <p>
-        Page: <u>{pathname}</u>
+        Game: <u>{gameId}</u>
       </p>
       <p>
-        Game: <u>{game}</u>
+        Scenario: <u>{scenarioId}</u>
       </p>
       <p>
-        Scenario: <u>{scenario}</u>
-      </p>
-      <p>
-        Screen: <u>{screen}</u>
+        Screen: <u>{screenId}</u>
       </p>
     </ScreenWrapper>
   );
