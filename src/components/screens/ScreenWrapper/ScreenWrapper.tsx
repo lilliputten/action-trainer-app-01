@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { Box, IconButton, Stack } from '@mui/material';
 
 import { Fullscreen, FullscreenExit, Replay } from '@mui/icons-material';
@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import screenfull from 'screenfull';
 
-import { TPropsWithChildrenAndClassName } from 'src/core/types';
+import { TGameRouterParams, TPropsWithChildrenAndClassName, defaultGameType } from 'src/core/types';
 import { RouterLinkComponent } from 'src/components/MUI';
 import { useAppSessionStore } from 'src/store';
 
@@ -17,6 +17,7 @@ interface TProps extends TPropsWithChildrenAndClassName {
 
 export const ScreenWrapper = observer<TProps, HTMLDivElement>(
   React.forwardRef((props, ref) => {
+    const { game: gameId = defaultGameType } = useParams<TGameRouterParams>();
     const appSessionStore = useAppSessionStore();
     const { fullscreen } = appSessionStore;
     const { children, className } = props;
@@ -51,7 +52,11 @@ export const ScreenWrapper = observer<TProps, HTMLDivElement>(
           direction="row"
         >
           {!isRoot && (
-            <IconButton component={RouterLinkComponent} to="/" title="Начать сначала">
+            <IconButton
+              component={RouterLinkComponent}
+              to={`/game/${gameId}`}
+              title="Начать сначала"
+            >
               <Replay />
             </IconButton>
           )}

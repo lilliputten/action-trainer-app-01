@@ -98,10 +98,12 @@ $videoRedColor: #e41a4a;
   &:hover {
     border: $borderWidth dashed color.change($videoRedColor, $alpha: 0.5);
   }
+  $hoverFilters: brightness(110%) contrast(110%);
+  $blurFilter: blur(0.2vmin);
   &:hover,
   &.selected {
     .videoEffectComplete & {
-      backdrop-filter: brightness(110%) contrast(110%);
+      backdrop-filter: $hoverFilters;
     }
   }
   &.selected {
@@ -109,6 +111,9 @@ $videoRedColor: #e41a4a;
   }
   &:active {
     background-color: color.change($videoRedColor, $alpha: 0.2);
-    backdrop-filter: blur(0.5vw);
+    backdrop-filter: $blurFilter;
+    &:hover {
+      backdrop-filter: $hoverFilters $blurFilter;
+    }
   }
 }
