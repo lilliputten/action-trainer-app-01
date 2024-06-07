@@ -1,23 +1,42 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { TGameRouterParams } from 'src/core/types';
+import { EGameType, EScenarioType, TGameRouterParams } from 'src/core/types';
 
-export function useScreenParams() {
+interface TScreenParamsOptions {
+  allowNoGame?: boolean;
+  allowNoScreen?: boolean;
+  allowNoScenario?: boolean;
+}
+
+export interface TScreenParamsResult {
+  gameId: EGameType;
+  scenarioId: EScenarioType;
+  screenId: number;
+}
+
+export function useScreenParams(opts: TScreenParamsOptions | undefined = undefined) {
+  // TODO: Use options, eg: allowNoScreen, allowNoScenario
   // Eg page url: /game/first/irina/1
   const navigate = useNavigate();
   const { game: gameId, scenario: scenarioId, screen } = useParams<TGameRouterParams>();
   const screenId = Number(screen);
   React.useEffect(() => {
     if (!gameId) {
-      navigate('/');
+      if (!opts?.allowNoGame) {
+        return navigate('/');
+      }
     }
     if (!scenarioId) {
-      navigate(`/game/${gameId}`);
+      if (!opts?.allowNoScenario) {
+        return navigate(`/game/${gameId}`);
+      }
     }
-    if (!screenId || !screenId) {
-      navigate(`/game/${gameId}`);
+    if (!screenId) {
+      if (!opts?.allowNoScreen) {
+        return navigate(`/game/${gameId}`);
+      }
     }
-  }, [gameId, scenarioId, screenId, navigate]);
+  }, [gameId, scenarioId, screenId, navigate, opts]);
   return { gameId, scenarioId, screenId };
 }

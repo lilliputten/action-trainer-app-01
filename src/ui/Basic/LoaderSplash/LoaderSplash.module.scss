@@ -5,6 +5,12 @@
   justify-content: center;
   align-items: center;
   transition: opacity $animationTimeMs;
+  &.bg_videoBlue {
+    background-color: $videoBlueColor;
+  }
+  &.bg_videoBg {
+    background-color: $videoBgColor;
+  }
   &.mode_cover {
     position: absolute;
     left: 0;
@@ -16,28 +22,6 @@
     opacity: 0;
     pointer-events: none;
   }
-  /*
-   * &.bg {
-   *   &,
-   *   &_page {
-   *     // TODO: Get color from mui theme?
-   *     background-color: $bodyBgColor;
-   *   }
-   *   &_black {
-   *     background-color: #000;
-   *   }
-   *   &_white {
-   *     background-color: #fff;
-   *   }
-   *   &_primary {
-   *     background-color: $primaryColor;
-   *   }
-   *   &_neutral,
-   *   &_gray {
-   *     background-color: $neutralColor;
-   *   }
-   * }
-   */
   &.fullSize {
     flex: 1;
   }

@@ -1,10 +1,10 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { Box, ButtonBase } from '@mui/material';
 import classNames from 'classnames';
 
-import { EScenarioType, TGameRouterParams, defaultGameType, scenarioNames } from 'src/core/types';
+import { EScenarioType, defaultGameType, scenarioNames } from 'src/core/types';
 
 import { px } from 'src/core/helpers/styles';
 import { animationTime, effectTime } from 'src/core/assets/scss';
@@ -12,11 +12,13 @@ import { getGameRoute } from 'src/core/helpers/routes';
 import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
 import { gamesHash } from 'src/core/constants/game/games';
 import { useContainerSize } from 'src/ui/hooks';
+import { getVideoSizeByRef } from 'src/core/helpers/video';
+import { useScreenParams } from 'src/core/hooks/routes';
 
 import styles from './SelectGameScenarioPage.module.scss';
-import { getVideoSizeByRef } from 'src/core/helpers/video';
 
 export const SelectGameScenarioPage: React.FC = observer(() => {
+  const navigate = useNavigate();
   const {
     ref: refVideo,
     width: videoContainerWidth,
@@ -39,31 +41,36 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
     refVideo,
     updateBoxGeometry,
   ]);
-  const { game: gameId = defaultGameType } = useParams<TGameRouterParams>();
-  const navigate = useNavigate();
+  const { gameId = defaultGameType } = useScreenParams({
+    allowNoGame: true,
+    allowNoScenario: true,
+    allowNoScreen: true,
+  });
   // TODO: Check `started` state if not in dev mode?
   const [isActive, setActive] = React.useState(false);
-  const startPlay = React.useCallback(() => {
+  // Start video handler...
+  const startVideoPlay = React.useCallback(() => {
     const video = refVideo.current;
     if (video) {
       refVideo.current?.play();
       updateBoxGeometry();
     }
   }, [refVideo, updateBoxGeometry]);
+  // Start and initialize video with a delay...
   React.useEffect(() => {
     setTimeout(() => {
       setActive(true);
     }, animationTime);
     const video = refVideo.current;
-    if (video && startPlay) {
+    if (video && startVideoPlay) {
       video.addEventListener('canplay', () => {
-        setTimeout(startPlay, effectTime);
+        setTimeout(startVideoPlay, effectTime);
       });
       return () => {
-        video?.removeEventListener('canplay', startPlay);
+        video?.removeEventListener('canplay', startVideoPlay);
       };
     }
-  }, [refVideo, startPlay]);
+  }, [refVideo, startVideoPlay]);
   const [videoComplete, setVideoComplete] = React.useState(false);
   const [videoEffectComplete, setVideoEffectComplete] = React.useState(false);
   const [scenario, setScenario] = React.useState<EScenarioType | undefined>();
@@ -85,9 +92,10 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
     [navigate, gameId],
   );
   const isFinished = !!scenario;
-  // Create scenario buttons...
+  // Get game data...
   const gameData = gamesHash[gameId];
   const { startVideoUrl } = gameData;
+  // Create scenario buttons...
   const scenarioButtons = React.useMemo(() => {
     return gameData.scenarios.map((game) => {
       const { id, selectButtonSx, name } = game;
