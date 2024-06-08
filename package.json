@@ -1,8 +1,8 @@
 {
   "name": "action-trainer-app-01",
-  "version": "0.0.3",
-  "timetag": "240608-0101",
-  "timestamp": "2024.06.08 01:01 +0300",
+  "version": "0.0.4",
+  "timetag": "240608-2317",
+  "timestamp": "2024.06.08 23:17 +0300",
   "changed": "2024.06.05, 23:18",
   "eslint-unused-rules": {
     "eqeqeq": [

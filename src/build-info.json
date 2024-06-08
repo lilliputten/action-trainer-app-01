@@ -1,10 +1,10 @@
 {
   "projectName": "action-trainer-app-01",
-  "timestamp": "2024.06.08 01:01 +0300",
-  "timetag": "240608-0101",
-  "version": "0.0.3",
-  "currentTimeStr": "2024.06.08 01:01 +0300",
-  "currentTimeTag": "240608-0101",
-  "gitCommitHash": "78d9305",
-  "gitBranch": "8-create-screens"
+  "timestamp": "2024.06.08 23:17 +0300",
+  "timetag": "240608-2317",
+  "version": "0.0.4",
+  "currentTimeStr": "2024.06.08 23:17 +0300",
+  "currentTimeTag": "240608-2317",
+  "gitCommitHash": "115998a",
+  "gitBranch": "12-create-videos-and-data"
 }
