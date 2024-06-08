@@ -47,8 +47,6 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
   const screensCount = scenarioData.screens.length;
   const isLastScreen = screenNo === screensCount;
   // Initialize video ref (to update geometry)...
-  // const [videoWidth, setVideoWidth] = React.useState<number | undefined>();
-  // const [videoHeight, setVideoHeight] = React.useState<number | undefined>();
   const {
     ref: refVideo,
     width: videoContainerWidth,

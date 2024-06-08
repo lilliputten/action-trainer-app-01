@@ -14,10 +14,20 @@ export interface TScreenData {
 
 export function useScreenData() {
   const { gameId, scenarioId, screenNo } = useScreenParams() as TScreenParamsResult;
+  if (!gameId) {
+    throw new Error(`Не указана игра!`);
+  }
   const gameData = gamesHash[gameId];
-  const scenarioData = gameData.scenarios.find(({ id }) => id === scenarioId);
+  if (!gameData) {
+    throw new Error(`Игры '${gameId}' не существует.`);
+  }
+  const { scenarios } = gameData;
+  if (!scenarios) {
+    throw new Error(`Не определны сценарии для игры ${gameId}.`);
+  }
+  const scenarioData = scenarios.find(({ id }) => id === scenarioId);
   if (!scenarioData) {
-    const error = new Error(`Not found a scenario for id ${scenarioId}`);
+    const error = new Error(`Не найден сценарий '${scenarioId}' для игры '${gameId}'.`);
     console.log('[GameScreenPage:useScreenData]', error.message, {
       gameData,
       screenNo,

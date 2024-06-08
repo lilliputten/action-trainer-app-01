@@ -6,26 +6,37 @@ import classNames from 'classnames';
 
 import { effectTime } from 'src/core/assets/scss';
 import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
+import { TGameRouterParams, defaultGameType, gameTypes } from 'src/core/types';
+import { gamesHash } from 'src/core/constants/game/games';
+import { ShowError } from 'src/components/app/ShowError';
 
 import styles from './StartGamePage.module.scss';
-import { defaultGameType } from 'src/core/types';
 
 export const StartGamePage: React.FC = observer(() => {
-  const { game = defaultGameType } = useParams();
+  const { game: gameId = defaultGameType } = useParams<TGameRouterParams>();
+  const error = React.useMemo(() => {
+    const isValidGame = !!gameId && gameTypes.includes(gameId) && !!gamesHash[gameId];
+    if (!isValidGame) {
+      return new Error(`Указана несуществующая игра: ${gameId}`);
+    }
+  }, [gameId]);
   const [isStarted, setStarted] = React.useState(false);
   const navigate = useNavigate();
   const handleStart = React.useCallback<React.MouseEventHandler<HTMLButtonElement>>(() => {
     setStarted(true);
     setTimeout(() => {
-      navigate(`/game/${game}/start`);
+      navigate(`/game/${gameId}/start`);
     }, effectTime);
-  }, [game, navigate]);
+  }, [gameId, navigate]);
   return (
     <ScreenWrapper className={classNames(styles.root, isStarted && styles.started)}>
-      <ButtonBase className={classNames(styles.button)} onClick={handleStart}>
-        Начать
-      </ButtonBase>
-      <Box className={classNames(styles.curtain)}></Box>
+      {!!error && <ShowError className={styles.warningText} error={error} />}
+      {!error && (
+        <ButtonBase className={styles.button} onClick={handleStart}>
+          Начать
+        </ButtonBase>
+      )}
+      <Box className={styles.curtain}></Box>
     </ScreenWrapper>
   );
 });
