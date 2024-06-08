@@ -7,8 +7,8 @@
 
 Action trainer app.
 
-- Version: 0.0.1
-- Last changes timestamp: 2024.06.06 04:47 +0300
+- Version: 0.0.3
+- Last changes timestamp: 2024.06.08 01:01 +0300
 
 TODO: Add the project description.
 

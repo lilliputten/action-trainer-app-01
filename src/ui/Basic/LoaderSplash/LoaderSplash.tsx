@@ -17,14 +17,16 @@ interface TLoaderSplashProps {
   show?: boolean;
   mode?: TSplashMode;
   themeMode?: TMuiThemeMode;
+  bg?: 'videoBlue' | 'videoBg';
 }
 
 export function LoaderSplash(props: TLoaderSplashProps): JSX.Element {
-  const { className, fullSize, show = true, mode, themeMode } = props;
+  const { className, fullSize, show = true, mode, bg, themeMode } = props;
   const resultedClassName = classNames(
     className,
     styles.container,
     mode && styles['mode_' + mode],
+    bg && styles['bg_' + bg],
     fullSize && styles.fullSize,
     show || styles.hidden,
   );

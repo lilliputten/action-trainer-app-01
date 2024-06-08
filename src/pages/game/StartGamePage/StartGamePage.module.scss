@@ -30,6 +30,8 @@ $videoRedColor: #e41a4a;
   }
 }
 
+$textShadowSize: 0.4vw;
+
 .button {
   &:global(.MuiButtonBase-root) {
     overflow: hidden;
@@ -47,9 +49,10 @@ $videoRedColor: #e41a4a;
     transition: all $transitionTimeMs;
     background-color: $videoRedColor;
     // background: linear-gradient(165deg, $videoRedColor 0%, color.mix($videoRedColor, black, 30%) 100%);
-    border: 0.5vw solid white;
+    border: 0.5vw solid color.change(white, $alpha: 0.8);
     font-size: 7vw;
     color: color.mix(white, $videoRedColor, 100%);
+    text-shadow: $textShadowSize $textShadowSize color.change(black, $alpha: 0.4);
     padding: 2vw 5vw;
     border-radius: 10vw;
     box-shadow:

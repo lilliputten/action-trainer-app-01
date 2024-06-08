@@ -1,29 +1,33 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { Box, ButtonBase } from '@mui/material';
 import classNames from 'classnames';
 
-import { EScenarioType, TGameRouterParams, defaultGameType, scenarioNames } from 'src/core/types';
+import { EScenarioType, defaultGameType, scenarioNames } from 'src/core/types';
 
+import { isDev } from 'src/core/constants/config';
 import { px } from 'src/core/helpers/styles';
 import { animationTime, effectTime } from 'src/core/assets/scss';
 import { getGameRoute } from 'src/core/helpers/routes';
 import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
 import { gamesHash } from 'src/core/constants/game/games';
 import { useContainerSize } from 'src/ui/hooks';
+import { getVideoSizeByRef } from 'src/core/helpers/video';
+import { useScreenParams } from 'src/core/hooks/routes';
 
 import styles from './SelectGameScenarioPage.module.scss';
-import { getVideoSizeByRef } from 'src/core/helpers/video';
 
-const videoUrl = '/videos/1c-0-start.mp4';
+const doDebug = isDev && false;
 
 export const SelectGameScenarioPage: React.FC = observer(() => {
+  const navigate = useNavigate();
   const {
     ref: refVideo,
     width: videoContainerWidth,
     height: videoContainerHeight,
   } = useContainerSize<HTMLVideoElement>();
+  const buttonBorderWidth = videoContainerWidth && videoContainerWidth / 80;
   const refBox = React.useRef<HTMLDivElement>(null);
   const updateBoxGeometry = React.useCallback(() => {
     const box = refBox.current;
@@ -41,31 +45,36 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
     refVideo,
     updateBoxGeometry,
   ]);
-  const { game: gameId = defaultGameType } = useParams<TGameRouterParams>();
-  const navigate = useNavigate();
+  const { gameId = defaultGameType } = useScreenParams({
+    allowNoGame: true,
+    allowNoScenario: true,
+    allowNoScreen: true,
+  });
   // TODO: Check `started` state if not in dev mode?
   const [isActive, setActive] = React.useState(false);
-  const startPlay = React.useCallback(() => {
+  // Start video handler...
+  const startVideoPlay = React.useCallback(() => {
     const video = refVideo.current;
     if (video) {
       refVideo.current?.play();
       updateBoxGeometry();
     }
   }, [refVideo, updateBoxGeometry]);
+  // Start and initialize video with a delay...
   React.useEffect(() => {
     setTimeout(() => {
       setActive(true);
     }, animationTime);
     const video = refVideo.current;
-    if (video && startPlay) {
+    if (video && startVideoPlay) {
       video.addEventListener('canplay', () => {
-        setTimeout(startPlay, effectTime);
+        setTimeout(startVideoPlay, effectTime);
       });
       return () => {
-        video?.removeEventListener('canplay', startPlay);
+        video?.removeEventListener('canplay', startVideoPlay);
       };
     }
-  }, [refVideo, startPlay]);
+  }, [refVideo, startVideoPlay]);
   const [videoComplete, setVideoComplete] = React.useState(false);
   const [videoEffectComplete, setVideoEffectComplete] = React.useState(false);
   const [scenario, setScenario] = React.useState<EScenarioType | undefined>();
@@ -86,10 +95,13 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
     },
     [navigate, gameId],
   );
+  /** Has all screen activities finished? */
   const isFinished = !!scenario;
+  // Get game data...
+  const gameData = gamesHash[gameId];
+  const { startVideoUrl } = gameData;
   // Create scenario buttons...
   const scenarioButtons = React.useMemo(() => {
-    const gameData = gamesHash[gameId];
     return gameData.scenarios.map((game) => {
       const { id, selectButtonSx, name } = game;
       return (
@@ -98,49 +110,34 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
           id={id}
           className={classNames(styles.button, scenario === id && styles.selected)}
           onClick={handleScenarioSelect}
-          sx={selectButtonSx}
+          sx={{ ...selectButtonSx, borderWidth: buttonBorderWidth }}
           title={name || scenarioNames[id]}
         ></ButtonBase>
       );
     });
-  }, [gameId, handleScenarioSelect, scenario]);
+  }, [gameData, handleScenarioSelect, scenario, buttonBorderWidth]);
   return (
     <ScreenWrapper
       className={classNames(
         styles.root,
-        videoComplete && styles.videoComplete,
-        videoEffectComplete && styles.videoEffectComplete,
-        scenario && styles.finished,
-        isActive && !isFinished && styles.active,
+        (doDebug || videoComplete) && styles.videoComplete,
+        (doDebug || videoEffectComplete) && styles.videoEffectComplete,
+        (doDebug || isFinished) && styles.finished,
+        (doDebug || isActive) && !isFinished && styles.active,
       )}
     >
       <video
-        src={videoUrl}
+        src={startVideoUrl}
         className={styles.video}
         preload="auto"
         onEnded={handleVideoEnd}
         ref={refVideo}
-        // controls
-        // autoPlay
         muted
       ></video>
       <Box className={classNames(styles.overContainer)}>
         <Box ref={refBox} className={classNames(styles.overBox)}>
           {/* Scenario buttons */}
           {scenarioButtons}
-          {/* // Button demo
-          <ButtonBase
-            id={EScenarioType.Natasha}
-            className={classNames(
-              styles.button,
-              scenario === EScenarioType.Natasha && styles.selected,
-            )}
-            onClick={handleScenarioSelect}
-            sx={{
-              ...defaultButtonSx,
-            }}
-          ></ButtonBase>
-          */}
         </Box>
       </Box>
       <Box className={classNames(styles.curtain)}></Box>

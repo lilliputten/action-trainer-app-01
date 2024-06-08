@@ -1,5 +1,3 @@
-$videoRedColor: #e41a4a;
-
 .root {
   display: flex;
   width: 100%;
@@ -8,20 +6,9 @@ $videoRedColor: #e41a4a;
   flex: 1;
   overflow: hidden;
   transition: background $transitionTimeMs;
-  // background-color: $defaultBackgroundColor;
-  // opacity: 1;
-  // &.videoComplete {
-  //   background-color: color.mix($defaultBackgroundColor, black, 90%);
-  // }
-}
-
-.scrollableContainer {
-  min-height: 100%;
 }
 
 .video {
-  // Set a little larger size to hide black frame line
-  // width: 100.5%;
   outline: unset;
   border: none;
   clip-path: inset(0px);
@@ -31,8 +18,6 @@ $videoRedColor: #e41a4a;
   .videoComplete & {
     opacity: 0.8;
   }
-  // DEBUG
-  // border: 1px solid red;
   max-width: 100%;
   max-height: 100%;
 }
@@ -84,31 +69,41 @@ $videoRedColor: #e41a4a;
   }
 }
 
+$buttonBorderWidth: 1em;
+
 .button {
+  font-size: 100%;
   .videoComplete & {
     pointer-events: all;
   }
   transition: all $transitionTimeMs;
-  $borderWidth: 1vmin;
   &:global(.MuiButtonBase-root) {
-    // border-radius: 15%;
     position: absolute;
-    border: $borderWidth dashed transparent;
+    border-style: dashed;
+    border-color: transparent;
   }
+  &:global(.MuiButtonBase-root), // DEBUG: Show all frames
   &:hover {
-    border: $borderWidth dashed color.change($videoRedColor, $alpha: 0.5);
+    border-style: dashed;
+    border-color: color.change($videoRedColor, $alpha: 0.5);
   }
+  $hoverFilters: brightness(110%) contrast(110%);
+  $blurFilter: blur(0.2vmin);
   &:hover,
   &.selected {
     .videoEffectComplete & {
-      backdrop-filter: brightness(110%) contrast(110%);
+      backdrop-filter: $hoverFilters;
     }
   }
   &.selected {
-    border: $borderWidth solid color.change($videoRedColor, $alpha: 0.5);
+    border-style: solid;
+    border-color: color.change($videoRedColor, $alpha: 0.5);
   }
   &:active {
     background-color: color.change($videoRedColor, $alpha: 0.2);
-    backdrop-filter: blur(0.5vw);
+    backdrop-filter: $blurFilter;
+    &:hover {
+      backdrop-filter: $hoverFilters $blurFilter;
+    }
   }
 }
