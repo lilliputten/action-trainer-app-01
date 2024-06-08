@@ -1,6 +1,6 @@
 Project: action-trainer-app-01
-Version: 0.0.3
-Branch: 8-create-screens
-Commit: 78d9305
-Fixed: 2024.06.08 01:01 +0300
-Built: 2024.06.08 01:01 +0300
+Version: 0.0.4
+Branch: 12-create-videos-and-data
+Commit: 115998a
+Fixed: 2024.06.08 23:17 +0300
+Built: 2024.06.08 23:17 +0300
