@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import { EScenarioType, defaultGameType, scenarioNames } from 'src/core/types';
 
+import { isDev } from 'src/core/constants/config';
 import { px } from 'src/core/helpers/styles';
 import { animationTime, effectTime } from 'src/core/assets/scss';
 import { getGameRoute } from 'src/core/helpers/routes';
@@ -17,6 +18,8 @@ import { useScreenParams } from 'src/core/hooks/routes';
 
 import styles from './SelectGameScenarioPage.module.scss';
 
+const doDebug = isDev && false;
+
 export const SelectGameScenarioPage: React.FC = observer(() => {
   const navigate = useNavigate();
   const {
@@ -24,6 +27,7 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
     width: videoContainerWidth,
     height: videoContainerHeight,
   } = useContainerSize<HTMLVideoElement>();
+  const buttonBorderWidth = videoContainerWidth && videoContainerWidth / 80;
   const refBox = React.useRef<HTMLDivElement>(null);
   const updateBoxGeometry = React.useCallback(() => {
     const box = refBox.current;
@@ -106,20 +110,20 @@ export const SelectGameScenarioPage: React.FC = observer(() => {
           id={id}
           className={classNames(styles.button, scenario === id && styles.selected)}
           onClick={handleScenarioSelect}
-          sx={selectButtonSx}
+          sx={{ ...selectButtonSx, borderWidth: buttonBorderWidth }}
           title={name || scenarioNames[id]}
         ></ButtonBase>
       );
     });
-  }, [gameData, handleScenarioSelect, scenario]);
+  }, [gameData, handleScenarioSelect, scenario, buttonBorderWidth]);
   return (
     <ScreenWrapper
       className={classNames(
         styles.root,
-        videoComplete && styles.videoComplete,
-        videoEffectComplete && styles.videoEffectComplete,
-        isFinished && styles.finished,
-        isActive && !isFinished && styles.active,
+        (doDebug || videoComplete) && styles.videoComplete,
+        (doDebug || videoEffectComplete) && styles.videoEffectComplete,
+        (doDebug || isFinished) && styles.finished,
+        (doDebug || isActive) && !isFinished && styles.active,
       )}
     >
       <video

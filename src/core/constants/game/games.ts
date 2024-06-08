@@ -1,6 +1,6 @@
 import { SxProps } from '@mui/material';
 
-import { percent } from 'src/core/helpers/styles';
+import { percent, px } from 'src/core/helpers/styles';
 import { EGameType, EScenarioType, TGame } from 'src/core/types';
 
 const defaultGameScenarioButtonSx: SxProps = {
@@ -15,11 +15,12 @@ const defaultGameScenarioButtonSx: SxProps = {
   width: percent(44.5),
   height: percent(80.5),
   borderRadius: percent(12),
-  borderWidth: percent(5),
+  borderWidth: px(10),
 };
 
 const defaultAnswerSx: SxProps = {
-  borderRadius: '4vmax',
+  // borderRadius: '4vmax',
+  borderRadius: percent(20),
   // borderWidth: '1vmax',
   top: percent(76),
   height: percent(16),
@@ -94,7 +95,7 @@ export const gamesList: TGame[] = [
                   width: percent(46.2),
                   top: percent(72),
                   height: percent(24),
-                  borderRadius: '3vmax',
+                  // borderRadius: percent(20),
                 },
               },
               {
@@ -106,7 +107,6 @@ export const gamesList: TGame[] = [
                   width: percent(46.2),
                   top: percent(72),
                   height: percent(24),
-                  borderRadius: '3vmax',
                 },
               },
             ],

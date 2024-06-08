@@ -1,6 +1,16 @@
 import { TScreenParamsResult, useScreenParams } from 'src/core/hooks/routes';
 
 import { gamesHash } from 'src/core/constants/game/games';
+import { EGameType, EScenarioType, TGame, TScenario, TScreen } from 'src/core/types';
+
+export interface TScreenData {
+  gameId: EGameType;
+  scenarioId: EScenarioType;
+  screenNo: number;
+  gameData: TGame;
+  scenarioData: TScenario;
+  screenData: TScreen;
+}
 
 export function useScreenData() {
   const { gameId, scenarioId, screenNo } = useScreenParams() as TScreenParamsResult;

@@ -8,6 +8,8 @@
   transition: background $transitionTimeMs;
 }
 
+.DEBUG,
+.finishedComplete,
 .overButtons,
 .active,
 .finished,
@@ -20,14 +22,14 @@
   // border: 1px dashed green; // DEBUG
   position: absolute;
   margin: 0;
-  top: 45%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   pointer-events: all;
-  gap: 4vmin;
+  // gap: 4vmin;
 }
 
 .video {
@@ -69,12 +71,18 @@
 }
 
 .overBox {
+  .DEBUG & {
+    border: 2px dashed red; // DEBUG
+  }
   position: relative;
   width: 0;
   height: 0;
 }
 
 .overContainer {
+  .DEBUG & {
+    opacity: 1; // DEBUG
+  }
   .videoComplete & {
     opacity: 1;
     background-color: color.change(black, $alpha: 0.3);
@@ -102,11 +110,13 @@ $buttonBlurFilters: blur(0.2vmin);
 .button {
   transition: all $transitionTimeMs;
   &:global(.MuiButtonBase-root) {
-    border: $buttonBorderWidth dashed transparent;
+    border-style: dashed;
+    border-color: transparent;
   }
-  // &:global(.MuiButtonBase-root), // DEBUG: Show all frames
+  .DEBUG &:global(.MuiButtonBase-root), // DEBUG: Show all frames
   &:hover {
-    border: $buttonBorderWidth dashed color.change($videoBlueColor, $alpha: 0.5);
+    border-style: dashed;
+    border-color: color.change($videoBlueColor, $alpha: 0.5);
   }
   &:hover,
   &.selected {
@@ -121,13 +131,16 @@ $buttonBlurFilters: blur(0.2vmin);
     position: absolute;
   }
   &.correct {
-    border: $buttonBorderWidth dashed color.change($successColor, $alpha: 0.5);
+    border-style: dashed;
+    border-color: color.change($successColor, $alpha: 0.5);
     backdrop-filter: $buttonHoverFilters;
   }
   &.selected {
-    border: $buttonBorderWidth solid color.change($videoRedColor, $alpha: 0.5);
+    border-style: solid;
+    border-color: color.change($videoRedColor, $alpha: 0.5);
     &.correct {
-      border: $buttonBorderWidth solid color.change($successColor, $alpha: 0.5);
+      border-style: solid;
+      border-color: color.change($successColor, $alpha: 0.5);
     }
   }
   &:active {
@@ -142,9 +155,6 @@ $buttonBlurFilters: blur(0.2vmin);
 $textShadowSize: 0.3vmin;
 
 .finalComment {
-  // flex: 1;
-  // font-size: 150%;
-  // font-weight: bold;
   color: #fff;
   text-shadow: $textShadowSize $textShadowSize color.change(black, $alpha: 0.4);
 }
@@ -166,8 +176,9 @@ $textShadowSize: 0.3vmin;
     transition: all $transitionTimeMs;
     $bgColor: $videoBlueColor;
     background-color: $bgColor;
-    border: 0.5vmin solid color.change(white, $alpha: 0.8);
-    font-size: 3vmin;
+    border-style: solid;
+    border-color: color.change(white, $alpha: 0.8);
+    // font-size: 3vmin;
     color: color.mix(white, $bgColor, 100%);
     text-shadow: $textShadowSize $textShadowSize color.change(black, $alpha: 0.4);
     padding: 1vmin 4vmin;
