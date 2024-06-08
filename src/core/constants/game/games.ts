@@ -202,51 +202,137 @@ export const gamesList: TGame[] = [
         screens: [
           {
             videoUrl: '/videos/1c/irina/1c-6.mp4',
-            /* answers: [
-             *   { text: 'Ирина права', buttonSx: { ...defaultAnswerSx } },
-             *   { isCorrect: true, text: ' Ирина не права', buttonSx: { ...defaultAnswerSx } },
-             * ],
-             */
+            finalComment:
+              'Повышение давления относительно обычного показателя даже на 10 мм рт. ст. требует внимания. Надо сообщить об этом врачу. Нужно ли это сделать срочно или ждет до планового визита, разберем на последнем уроке курса.',
+            answers: [
+              {
+                text: 'Ирина права',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  left: percent(6.5),
+                  width: percent(42.5),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Ирина не права',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  left: percent(50.7),
+                  width: percent(42.5),
+                },
+              },
+            ],
           },
           {
             videoUrl: '/videos/1c/irina/1c-7.mp4',
-            /* answers: [
-             *   { isCorrect: true, text: 'Пульс слишком частый', buttonSx: { ...defaultAnswerSx } },
-             *   { text: 'Пульс редкий', buttonSx: { ...defaultAnswerSx } },
-             * ],
-             */
+            finalComment:
+              'Во время беременности пульс в норме увеличивается, однако он не должен превышать 100 ударов в минуту в состоянии покоя. Если пульс превышает этот показатель, нужно обратиться к врачу для дополнительного обследования.',
+            answers: [
+              {
+                text: 'ЧСС в норме',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  top: percent(73),
+                  height: percent(22),
+                  left: percent(0.5),
+                  width: percent(28.5),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Пульс слишком частый',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  top: percent(73),
+                  height: percent(22),
+                  left: percent(29.2),
+                  width: percent(35),
+                },
+              },
+              {
+                text: 'Пульс редкий',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  top: percent(73),
+                  height: percent(22),
+                  left: percent(64.5),
+                  width: percent(35),
+                },
+              },
+            ],
           },
           {
             videoUrl: '/videos/1c/irina/1c-8.mp4',
-            /* answers: [
-             *   { text: 'Показатели в норме', buttonSx: { ...defaultAnswerSx } },
-             *   {
-             *     isCorrect: true,
-             *     text: 'Есть отклонение от нормы',
-             *     buttonSx: { ...defaultAnswerSx },
-             *   },
-             * ],
-             */
+            finalComment:
+              'У Ирины повышенное давление относительно ее обычного показателя 100/60, а также 01.06.2024 высокий пульс вечером. Нужно обсудить с врачом',
+            answers: [
+              {
+                text: 'Показатели в норме',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  left: percent(2),
+                  width: percent(41.5),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Есть отклонение от нормы',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  left: percent(47),
+                  width: percent(50.5),
+                },
+              },
+            ],
           },
           {
             videoUrl: '/videos/1c/irina/1c-9.mp4',
-            /* answers: [
-             *   { text: 'Да, это целесообразно', buttonSx: { ...defaultAnswerSx } },
-             *   {
-             *     isCorrect: true,
-             *     text: 'Нет, это не имеет смысла',
-             *     buttonSx: { ...defaultAnswerSx },
-             *   },
-             * ],
-             */
+            finalComment:
+              'В норме давление в течение дня может колебаться существенно. Оно зависит от физической активности. Целесообразно измерять давление два раза в день: утром и вечером. В это время организм находится в состоянии покоя.',
+            answers: [
+              {
+                text: 'Да, это целесообразно',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  left: percent(3.5),
+                  width: percent(44.5),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Нет, это не имеет смысла',
+                buttonSx: { ...defaultAnswerSx, left: percent(48.5), width: percent(48) },
+              },
+            ],
           },
           {
             videoUrl: '/videos/1c/irina/1c-10.mp4',
-            /* answers: [
-             *   { text: 'Да, нужно срочно вызывать врача', buttonSx: { ...defaultAnswerSx } },
-             *   { isCorrect: true, text: 'Нет, скорая не нужна', buttonSx: { ...defaultAnswerSx } },
-             * ],
-             */
+            finalComment:
+              'Легкая отечность ног это частое явление при беременности. Оно не требует срочной медицинской помощи, но врачу на приеме сказать нужно.',
+            answers: [
+              {
+                text: 'Да, нужно срочно вызывать врача',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  top: percent(73.5),
+                  height: percent(22),
+                  left: percent(3.5),
+                  width: percent(45.5),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Нет, скорая не нужна',
+                buttonSx: {
+                  ...defaultAnswerSx,
+                  top: percent(73.5),
+                  height: percent(22),
+                  left: percent(50.5),
+                  width: percent(45.5),
+                },
+              },
+            ],
           },
         ],
       },
