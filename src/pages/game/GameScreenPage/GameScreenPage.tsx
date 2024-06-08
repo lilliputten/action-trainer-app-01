@@ -1,9 +1,11 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
 import { useScreenData } from 'src/core/hooks/routes';
+import { ShowError } from 'src/components/app/ShowError';
 
-import { GameScreen } from './GameScreen/GameScreen';
+import { GameScreen } from './GameScreen';
 
-export function GameScreenPage() {
-  // Get game data...
+function GameScreenWrapper() {
   const screenData = useScreenData();
   const {
     // prettier-ignore
@@ -12,10 +14,20 @@ export function GameScreenPage() {
     screenNo,
   } = screenData;
   return (
-    <GameScreen
-      // prettier-ignore
-      key={['GameScreenPage', gameId, scenarioId, screenNo].join('-')}
-      {...screenData}
-    />
+    <ErrorBoundary fallbackRender={ShowError}>
+      <GameScreen
+        // prettier-ignore
+        key={['GameScreenPage', gameId, scenarioId, screenNo].join('-')}
+        {...screenData}
+      />
+    </ErrorBoundary>
+  );
+}
+
+export function GameScreenPage() {
+  return (
+    <ErrorBoundary fallbackRender={ShowError}>
+      <GameScreenWrapper />
+    </ErrorBoundary>
   );
 }

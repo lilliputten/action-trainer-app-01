@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { Box, IconButton, Stack } from '@mui/material';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { Fullscreen, FullscreenExit, Replay } from '@mui/icons-material';
 import classNames from 'classnames';
@@ -11,6 +12,7 @@ import { TGameRouterParams, TPropsWithChildrenAndClassName, defaultGameType } fr
 import { RouterLinkComponent } from 'src/components/MUI';
 import { useAppSessionStore } from 'src/store';
 import { LoaderSplash } from 'src/ui/Basic';
+import { ShowError } from 'src/components/app/ShowError';
 
 interface TProps extends TPropsWithChildrenAndClassName {
   ref?: React.ForwardedRef<HTMLDivElement>;
@@ -18,14 +20,13 @@ interface TProps extends TPropsWithChildrenAndClassName {
 
 export const ScreenWrapper = observer<TProps, HTMLDivElement>(
   React.forwardRef((props, ref) => {
-    // TODO: Show loader while session hasn't ready?
     const appSessionStore = useAppSessionStore();
     const { game: gameId = defaultGameType } = useParams<TGameRouterParams>();
     const { fullscreen, ready } = appSessionStore;
     const { children, className } = props;
     const location = useLocation();
     const { pathname } = location;
-    const isRoot = !pathname || pathname === '/';
+    const isRoot = !pathname || pathname === '/' || pathname.match(/^\/\w+\/\w+$/);
     const [isFullscreen, setFullscreen] = React.useState(fullscreen);
     React.useEffect(() => {
       if (isFullscreen !== appSessionStore.fullscreen) {
@@ -41,42 +42,43 @@ export const ScreenWrapper = observer<TProps, HTMLDivElement>(
       setFullscreen((isFullscreen) => !isFullscreen);
     }, []);
     return (
-      <Box className={classNames(className)} ref={ref}>
-        {/* Main content */}
-        {children}
-        {ready && (
-          <Stack
-            sx={{
-              position: 'absolute',
-              right: 4,
-              bottom: 4,
-            }}
-            spacing={1}
-            direction="row"
-          >
-            {!isRoot && (
-              <IconButton
-                component={RouterLinkComponent}
-                to={`/game/${gameId}`}
-                title="Начать сначала"
-              >
-                <Replay />
+      <ErrorBoundary fallbackRender={ShowError}>
+        <Box className={classNames(className)} ref={ref}>
+          {children}
+          {ready && (
+            <Stack
+              sx={{
+                position: 'absolute',
+                right: 4,
+                bottom: 4,
+              }}
+              spacing={1}
+              direction="row"
+            >
+              {!isRoot && (
+                <IconButton
+                  component={RouterLinkComponent}
+                  to={`/game/${gameId}`}
+                  title="Начать сначала"
+                >
+                  <Replay />
+                </IconButton>
+              )}
+              <IconButton title="Полноэкранный режим" onClick={toggleFullscreen}>
+                {isFullscreen ? <FullscreenExit /> : <Fullscreen />}
               </IconButton>
-            )}
-            <IconButton title="Полноэкранный режим" onClick={toggleFullscreen}>
-              {isFullscreen ? <FullscreenExit /> : <Fullscreen />}
-            </IconButton>
-          </Stack>
-        )}
-        <LoaderSplash
-          // prettier-ignore
-          fullSize
-          bg="videoBlue"
-          themeMode="dark"
-          mode="cover"
-          show={!ready}
-        />
-      </Box>
+            </Stack>
+          )}
+          <LoaderSplash
+            // prettier-ignore
+            fullSize
+            bg="videoBlue"
+            themeMode="dark"
+            mode="cover"
+            show={!ready}
+          />
+        </Box>
+      </ErrorBoundary>
     );
   }),
 );
