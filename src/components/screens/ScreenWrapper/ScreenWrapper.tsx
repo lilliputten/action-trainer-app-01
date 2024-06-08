@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { Box, IconButton, Stack } from '@mui/material';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { Fullscreen, FullscreenExit, Replay } from '@mui/icons-material';
 import classNames from 'classnames';
@@ -12,25 +12,14 @@ import { TGameRouterParams, TPropsWithChildrenAndClassName, defaultGameType } fr
 import { RouterLinkComponent } from 'src/components/MUI';
 import { useAppSessionStore } from 'src/store';
 import { LoaderSplash } from 'src/ui/Basic';
+import { ShowError } from 'src/components/app/ShowError';
 
 interface TProps extends TPropsWithChildrenAndClassName {
   ref?: React.ForwardedRef<HTMLDivElement>;
 }
 
-function fallbackRender({ error, resetErrorBoundary }: FallbackProps) {
-  // Call resetErrorBoundary() to reset the error boundary and retry the render.
-
-  return (
-    <div role="alert">
-      <p>Something went wrong:</p>
-      <pre style={{ color: 'red' }}>{error.message}</pre>
-    </div>
-  );
-}
-
 export const ScreenWrapper = observer<TProps, HTMLDivElement>(
   React.forwardRef((props, ref) => {
-    // TODO: Show loader while session hasn't ready?
     const appSessionStore = useAppSessionStore();
     const { game: gameId = defaultGameType } = useParams<TGameRouterParams>();
     const { fullscreen, ready } = appSessionStore;
@@ -53,12 +42,8 @@ export const ScreenWrapper = observer<TProps, HTMLDivElement>(
       setFullscreen((isFullscreen) => !isFullscreen);
     }, []);
     return (
-      <ErrorBoundary fallbackRender={fallbackRender}>
+      <ErrorBoundary fallbackRender={ShowError}>
         <Box className={classNames(className)} ref={ref}>
-          {/* Main content
-        <ErrorBoundary>
-        </ErrorBoundary>
-        */}
           {children}
           {ready && (
             <Stack

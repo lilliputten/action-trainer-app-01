@@ -28,20 +28,25 @@ export function useScreenData() {
   const scenarioData = scenarios.find(({ id }) => id === scenarioId);
   if (!scenarioData) {
     const error = new Error(`Не найден сценарий '${scenarioId}' для игры '${gameId}'.`);
-    console.log('[GameScreenPage:useScreenData]', error.message, {
+    // eslint-disable-next-line no-console
+    console.error('[GameScreenPage:useScreenData]', error.message, {
       gameData,
       screenNo,
       scenarioId,
       gameId,
       error,
     });
+    debugger; // eslint-disable-line no-debugger
     throw error;
   }
   // NOTE: screen numbers are start from 1
   const screenData = scenarioData.screens[screenNo - 1];
   if (!screenData) {
-    const error = new Error(`Not found a screen for no ${screenNo}`);
-    console.log('[GameScreenPage:useScreenData]', error.message, {
+    const error = new Error(
+      `Не найден экран '${screenNo}' для сценария '${scenarioId}' игры '${gameId}`,
+    );
+    // eslint-disable-next-line no-console
+    console.error('[GameScreenPage:useScreenData]', error.message, {
       scenarioData,
       gameData,
       screenNo,
@@ -49,6 +54,7 @@ export function useScreenData() {
       gameId,
       error,
     });
+    debugger; // eslint-disable-line no-debugger
     throw error;
   }
   return {

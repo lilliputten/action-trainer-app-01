@@ -33,6 +33,23 @@ const defaultRightAnswerSx: SxProps = {
   left: percent(51),
 };
 
+const thirdGameLeftButtonSx = {
+  ...defaultAnswerSx,
+  top: percent(77.5),
+  height: percent(14),
+  left: percent(7.5),
+  width: percent(41),
+};
+
+const thirdGameRightButtonSx = {
+  ...defaultRightAnswerSx,
+  //
+  top: percent(77.5),
+  height: percent(14),
+  left: percent(51.2),
+  width: percent(41),
+};
+
 /* // XXX: Conversion patterns:
  *
  * // Urls:
@@ -44,7 +61,7 @@ const defaultRightAnswerSx: SxProps = {
  *
  * // Answer patterns:
  *
- * '<,'>s/\s*\(\S.\+\)/{ text: '\1', buttonSx: { ...defaultAnswerSx } },/ | '<,'>s/text: '+/isCorrect: true, text: '/
+ * '<,'>s/\s*\(\S.\+\)/{ text: '\1', buttonSx: { ...defaultAnswerSx } },/ | '<,'>s/isCorrect: true, text: '/isCorrect: true, text: '/
  */
 
 export const gamesList: TGame[] = [
@@ -333,6 +350,235 @@ export const gamesList: TGame[] = [
                 },
               },
             ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: EGameType.Third,
+    startVideoUrl: '/videos/3c/3c-0-start.mp4',
+    scenarios: [
+      {
+        id: EScenarioType.Natasha,
+        selectButtonSx: { ...defaultGameScenarioButtonSx },
+        screens: [
+          // Сюжет, если выбрали Наташу
+          {
+            // 1. Наташа (покраснела) говорит: «Ой, температура повысилась.» Показывает градусник: на нем 37,6. Дальше думает: “Не страшно… Бывает.”
+            videoUrl: '/videos/3c/natasha/3c-natasha-1.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment: 'Тревожный сигнал, если температура выше 37,5°С.',
+          },
+          {
+            // 2. Несчастная Наташа говорит: «Токсикоз... Тошнит. Позавтракала, а на обед только бутерброд съела. Хорошо, хоть голова не кружится. К семинару могу подготовиться.»
+            videoUrl: '/videos/3c/natasha/3c-natasha-2.mp4',
+            answers: [
+              {
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Если в течение дня вы можете есть и пить, пусть чуть меньше нормы, это не повод беспокоиться. Тем более, если вас не рвет постоянно и нет синдромов обезвоживания.',
+          },
+          {
+            // 3. Еще более несчастная Наташа: «Ну это кошмар какой-то. Постоянно рвет сегодня весь день. Сегодня не ела. И даже пить уже не могу. Голова кружится и во рту все пересохло.»
+            videoUrl: '/videos/3c/natasha/3c-natasha-3.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Опасно, когда вы не можете есть и пить в течение целого дня. И появляются симптомы обезвоживания: жажда, сухость кожи и слизистых, слабость, головокружение. Также тревожный симптом, если вы теряете более 5% массы тела за один-два дня.',
+          },
+          {
+            // 4. Озадаченная Наташа: «Ой, что-то месячные начались. Говорят, если маленький срок, бывает такое.»
+            videoUrl: '/videos/3c/natasha/3c-natasha-4.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Кровянистые выделения из половых путей любой интенсивности это тревожный симптом. Может быть угроза выкидыша.',
+          },
+          {
+            // 5. Наташа страдает от боли: «Ну что так спина разболелась? В пояснице, и как будто заболит сильно, а потом отпустит. Никогда такого не было. Пойду полежу»
+            videoUrl: '/videos/3c/natasha/3c-natasha-5.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Сильные схваткообразные боли внизу живота или в области поясницы повод вызвать скорую.',
+          },
+        ],
+      },
+      {
+        id: EScenarioType.Irina,
+        selectButtonSx: { ...defaultGameScenarioButtonSx, left: percent(50.7) },
+        screens: [
+          // Сюжет, если выбрали Ирину
+          {
+            // 1.  Ирина озадачена: «Обычно у меня давление 100/60. А сейчас 120/65.»
+            videoUrl: '/videos/3c/irina/3c-irina-1.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Повышение давления даже больше чем на 10 мм рт. ст. по сравнению с обычным во время беременности тревожный сигнал. Нужно экстренно связаться с врачом или вызвать скорую.',
+          },
+          {
+            // 2. Ирина расстроена: «Что-то цвет мочи сегодня другой, темный. И больно было в туалет ходить.»
+            videoUrl: '/videos/3c/irina/3c-irina-2.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Болезненное мочеиспускание и изменение цвета мочи на темный, примесь крови опасный симптом.',
+          },
+          {
+            // 3. Ирина страдает от боли: «Спина болит. Может, это грыжа опять, а может и нет. Но болит как обычно – тянет немного, боль одинаковая все время.»
+            videoUrl: '/videos/3c/irina/3c-irina-3.mp4',
+            answers: [
+              {
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Опасны сильные схваткообразные боли внизу живота или в области поясницы. В случае Ирины это не опасно, но обязательно нужно сказать врачу на плановом приеме.',
+          },
+          {
+            // 4. Ирина озадаченно: «Ой, как я сильно отекла сегодня. Никогда такого не было. Становится хуже, и правая нога явно больше левой.»
+            videoUrl: '/videos/3c/irina/3c-irina-4.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Выраженные отеки ног, пальцев рук. Особенно – если они появились резко, нарастают, а также есть выраженная асимметрия в расположении отеков это опасно. Надо или звонить врачу или вызывать скорую.',
+          },
+          {
+            // 5. Ирина в расслабленном состоянии: «Голова кружится и как будто «мушки» поплыли.»
+            videoUrl: '/videos/3c/irina/3c-irina-5.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Опасно',
+                buttonSx: {
+                  ...thirdGameLeftButtonSx,
+                },
+              },
+              {
+                text: 'Не опасно',
+                buttonSx: {
+                  ...thirdGameRightButtonSx,
+                },
+              },
+            ],
+            finalComment:
+              'Головная боль, головокружение, нечеткое зрение, появление «мушек» перед глазами – это тревожные симптомы.',
           },
         ],
       },

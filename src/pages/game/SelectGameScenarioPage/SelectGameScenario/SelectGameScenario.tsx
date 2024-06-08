@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { Box, ButtonBase } from '@mui/material';
 import classNames from 'classnames';
 
-import { EGameType, EScenarioType, defaultGameType, scenarioNames } from 'src/core/types';
+import { EGameType, EScenarioType, scenarioNames } from 'src/core/types';
 
 import { isDev } from 'src/core/constants/config';
 import { px } from 'src/core/helpers/styles';
@@ -14,10 +14,8 @@ import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
 import { gamesHash } from 'src/core/constants/game/games';
 import { useContainerSize } from 'src/ui/hooks';
 import { getVideoSizeByRef } from 'src/core/helpers/video';
-import { useScreenParams } from 'src/core/hooks/routes';
 
 import styles from './SelectGameScenario.module.scss';
-import { showError } from 'src/ui/Basic';
 
 const doDebug = isDev && false;
 
