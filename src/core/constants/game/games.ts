@@ -3,6 +3,8 @@ import { SxProps } from '@mui/material';
 import { percent, px } from 'src/core/helpers/styles';
 import { EGameType, EScenarioType, TGame } from 'src/core/types';
 
+// NOTE: Attention to relative paths to `/public/videos/` (as `./videos/`)
+
 const defaultGameScenarioButtonSx: SxProps = {
   /* // UNUSED: Relative, based on screen width
    * left: vw(4),
@@ -68,14 +70,14 @@ const thirdGameRightButtonSx = {
 export const gamesList: TGame[] = [
   {
     id: EGameType.First,
-    startVideoUrl: '/videos/1c/1c-0-start.mp4',
+    startVideoUrl: './videos/1c/1c-0-start.mp4',
     scenarios: [
       {
         id: EScenarioType.Natasha,
         selectButtonSx: { ...defaultGameScenarioButtonSx },
         screens: [
           {
-            videoUrl: '/videos/1c/natasha/1c-1.mp4',
+            videoUrl: './videos/1c/natasha/1c-1.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -99,7 +101,7 @@ export const gamesList: TGame[] = [
               'Это типичные проявления повышенного давления. А еще иногда артериальное давление повышается, а головной боли нет. Это очень опасно. Важно мерить его регулярно.',
           },
           {
-            videoUrl: '/videos/1c/natasha/1c-2.mp4',
+            videoUrl: './videos/1c/natasha/1c-2.mp4',
             finalComment:
               'Если давление выше 140/90, нужно вызывать скорую. Иначе такое состояние негативно скажется на беременности.',
             answers: [
@@ -128,7 +130,7 @@ export const gamesList: TGame[] = [
             ],
           },
           {
-            videoUrl: '/videos/1c/natasha/1c-3.mp4',
+            videoUrl: './videos/1c/natasha/1c-3.mp4',
             finalComment:
               'Так как после приема пищи давление можно измерять только через 1-2 часа, по утрам первым делом лучше измерить давление. Чтобы не забыть об этом и сэкономить время, положите тонометр рядом с кроватью. Так вы сможете измерять давление сразу после пробуждения.',
             answers: [
@@ -152,7 +154,7 @@ export const gamesList: TGame[] = [
             ],
           },
           {
-            videoUrl: '/videos/1c/natasha/1c-4.mp4',
+            videoUrl: './videos/1c/natasha/1c-4.mp4',
             finalComment: 'Перед измерением давления убирайте одежду с выбранной руки.',
             answers: [
               {
@@ -167,7 +169,7 @@ export const gamesList: TGame[] = [
             ],
           },
           {
-            videoUrl: '/videos/1c/natasha/1c-5.mp4',
+            videoUrl: './videos/1c/natasha/1c-5.mp4',
             finalComment:
               'При беременности нормальным считается давление до 130/85 мм рт. ст. Это стандартная норма, но у вас может быть другая. Проконсультируйтесь с врачом. Даже незначительное повышение относительно вашего обычного показателя на 10 мм рт. ст. требует внимания.',
             answers: [
@@ -214,7 +216,7 @@ export const gamesList: TGame[] = [
         selectButtonSx: { ...defaultGameScenarioButtonSx, left: percent(50.7) },
         screens: [
           {
-            videoUrl: '/videos/1c/irina/1c-6.mp4',
+            videoUrl: './videos/1c/irina/1c-6.mp4',
             finalComment:
               'Повышение давления относительно обычного показателя даже на 10 мм рт. ст. требует внимания. Надо сообщить об этом врачу. Нужно ли это сделать срочно или ждет до планового визита, разберем на последнем уроке курса.',
             answers: [
@@ -238,7 +240,7 @@ export const gamesList: TGame[] = [
             ],
           },
           {
-            videoUrl: '/videos/1c/irina/1c-7.mp4',
+            videoUrl: './videos/1c/irina/1c-7.mp4',
             finalComment:
               'Во время беременности пульс в норме увеличивается, однако он не должен превышать 100 ударов в минуту в состоянии покоя. Если пульс превышает этот показатель, нужно обратиться к врачу для дополнительного обследования.',
             answers: [
@@ -276,7 +278,7 @@ export const gamesList: TGame[] = [
             ],
           },
           {
-            videoUrl: '/videos/1c/irina/1c-8.mp4',
+            videoUrl: './videos/1c/irina/1c-8.mp4',
             finalComment:
               'У Ирины повышенное давление относительно ее обычного показателя 100/60, а также 01.06.2024 высокий пульс вечером. Нужно обсудить с врачом',
             answers: [
@@ -300,7 +302,7 @@ export const gamesList: TGame[] = [
             ],
           },
           {
-            videoUrl: '/videos/1c/irina/1c-9.mp4',
+            videoUrl: './videos/1c/irina/1c-9.mp4',
             finalComment:
               'В норме давление в течение дня может колебаться существенно. Оно зависит от физической активности. Целесообразно измерять давление два раза в день: утром и вечером. В это время организм находится в состоянии покоя.',
             answers: [
@@ -320,7 +322,7 @@ export const gamesList: TGame[] = [
             ],
           },
           {
-            videoUrl: '/videos/1c/irina/1c-10.mp4',
+            videoUrl: './videos/1c/irina/1c-10.mp4',
             finalComment:
               'Легкая отечность ног это частое явление при беременности. Оно не требует срочной медицинской помощи, но врачу на приеме сказать нужно.',
             answers: [
@@ -353,7 +355,7 @@ export const gamesList: TGame[] = [
   },
   {
     id: EGameType.Second,
-    startVideoUrl: '/videos/1c/1c-0-start.mp4',
+    startVideoUrl: './videos/1c/1c-0-start.mp4',
     scenarios: [
       {
         id: EScenarioType.Natasha,
@@ -361,7 +363,7 @@ export const gamesList: TGame[] = [
         screens: [
           {
             // Наташа выбирает напиток в столовой, показываем буфет (витрину), стоят три напитка. Наташа думает: “Ну вот, опять тошнит, надоело! Что бы взять, чтобы полегчало?”
-            videoUrl: '/videos/2c/natasha/2c-natasha-1.mp4',
+            videoUrl: './videos/2c/natasha/2c-natasha-1.mp4',
             answers: [
               {
                 text: 'Кола',
@@ -395,7 +397,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Наташа в абстрактном пространстве, корчится. Думает: “Опять тошнит!!! Врач говорил, помогают некоторые продукты. Что-нибудь из моего подойдет?” Тут показываем содержимое сумки.
-            videoUrl: '/videos/2c/natasha/2c-natasha-2.mp4',
+            videoUrl: './videos/2c/natasha/2c-natasha-2.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -441,7 +443,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Изображаем Наташу плачущей на абстрактном фоне. Думает: “Ну вот, не взяла важный конспект, все время что-то забываю! Еще и спать хочу все время. Это ненормально!?”
-            videoUrl: '/videos/2c/natasha/2c-natasha-3.mp4',
+            videoUrl: './videos/2c/natasha/2c-natasha-3.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -472,7 +474,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Наташа с носовым платком на абстрактном фоне, думает: “Еще и нос заложило. Где мои капли и соляной раствор? Всегда мне помогает.”.
-            videoUrl: '/videos/2c/natasha/2c-natasha-4.mp4',
+            videoUrl: './videos/2c/natasha/2c-natasha-4.mp4',
             answers: [
               {
                 text: 'Использовать только капли',
@@ -525,7 +527,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Наташа в магазине с тележкой, думает: «Так хочется чипсов! Беременным можно все, что хочется! Съем половинку пачки, ничего же страшного.»
-            videoUrl: '/videos/2c/natasha/2c-natasha-5.mp4',
+            videoUrl: './videos/2c/natasha/2c-natasha-5.mp4',
             answers: [
               {
                 text: 'Да, Наташа права',
@@ -552,7 +554,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Наташа в магазине перед полкой с косметикой, выбирает крем у полок с баночками. Думает: “После беременности такие некрасивые растяжки. Аня пользовалась вот этим, ей помогло вроде, или у врача спросить?”. Тянется за баночкой.
-            videoUrl: '/videos/2c/natasha/2c-natasha-6.mp4',
+            videoUrl: './videos/2c/natasha/2c-natasha-6.mp4',
             answers: [
               {
                 text: 'Взять крем подруги',
@@ -579,7 +581,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Наташа меряет давление (правильно, рукав пижамы поднят вверх), крупно экран тонометра,  результат на тонометре - 115/74 мм рт. ст. Думает: “Не помню, нормально или нет. Обычно у меня 120/80. Вроде, все ок?”
-            videoUrl: '/videos/2c/natasha/2c-natasha-7.mp4',
+            videoUrl: './videos/2c/natasha/2c-natasha-7.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -627,7 +629,7 @@ export const gamesList: TGame[] = [
         screens: [
           {
             // Ирина в магазине с тележкой, думает: “Здорово, что у меня пока нет токсикоза, а если начнется? Возьму-ка я что-нибудь, что обычно снимает приступы тошноты у беременных. Что же мне взять?”
-            videoUrl: '/videos/2c/irina/2c-irina-1.mp4',
+            videoUrl: './videos/2c/irina/2c-irina-1.mp4',
             answers: [
               {
                 text: 'Йогурт',
@@ -672,7 +674,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Ирина в магазине с тележкой, думает: “У моей беременной подруги были запоры. Нужно бы как-то себя обезопасить. Возьму-ка продукты для профилактики, которые советовал врач. А что он советовал?”.
-            videoUrl: '/videos/2c/irina/2c-irina-2.mp4',
+            videoUrl: './videos/2c/irina/2c-irina-2.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -715,11 +717,11 @@ export const gamesList: TGame[] = [
             ],
             finalComment:
               'Чтобы избежать запоров, включите в рацион кисломолочку и продукты, содержащие клетчатку. Исключите белый хлеб, шоколад, крепкий чай и кофе.',
-            finalImage: '/videos/2c/irina/2c-irina-2r.png',
+            finalImage: './videos/2c/irina/2c-irina-2r.png',
           },
           {
             // Ирина на абстрактном фоне, думает: “Каждый день небольшое головокружение. Как-то это меня волнует. Вдруг с малышом что-то не так?”
-            videoUrl: '/videos/2c/irina/2c-irina-3.mp4',
+            videoUrl: './videos/2c/irina/2c-irina-3.mp4',
             answers: [
               {
                 text: 'Ирина права',
@@ -742,7 +744,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Ирина на абстрактном фоне, думает: “Так странно, никогда не ела банан со сметаной, а теперь все время об этом думаю. Наверное, не стоит экспериментировать?”
-            videoUrl: '/videos/2c/irina/2c-irina-4.mp4',
+            videoUrl: './videos/2c/irina/2c-irina-4.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -773,7 +775,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Ирина с носовым платком на абстрактном фоне. Думает: “Заложило нос, ну вот, простыла! Говорили же мне беречь себя. Неужели я заболела?”.
-            videoUrl: '/videos/2c/irina/2c-irina-5.mp4',
+            videoUrl: './videos/2c/irina/2c-irina-5.mp4',
             answers: [
               {
                 text: 'Заложенность носа – плохой признак, срочно к врачу',
@@ -804,7 +806,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Ирина сидит в кресле, озадачена. В той же розовой пижаме. Думает: “Что-то я часто хожу в туалет. Может, что-то застудила? Живот же еще не растет, ребенок пока ни на что не давит.”
-            videoUrl: '/videos/2c/irina/2c-irina-6.mp4',
+            videoUrl: './videos/2c/irina/2c-irina-6.mp4',
             answers: [
               {
                 text: 'Частое мочеиспускание на раннем сроке – плохой признак',
@@ -835,7 +837,7 @@ export const gamesList: TGame[] = [
           },
           {
             // Ирина меряет давление, результат на автоматическом тонометре - 103/65 мм рт. ст. Думает: “Норма -  до 130/85, но обычно-то у меня 100/60. Думаю, все хорошо.”
-            videoUrl: '/videos/2c/irina/2c-irina-7.mp4',
+            videoUrl: './videos/2c/irina/2c-irina-7.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -862,7 +864,7 @@ export const gamesList: TGame[] = [
   },
   {
     id: EGameType.Third,
-    startVideoUrl: '/videos/3c/3c-0-start.mp4',
+    startVideoUrl: './videos/3c/3c-0-start.mp4',
     scenarios: [
       {
         id: EScenarioType.Natasha,
@@ -871,7 +873,7 @@ export const gamesList: TGame[] = [
           // Сюжет, если выбрали Наташу
           {
             // 1. Наташа (покраснела) говорит: «Ой, температура повысилась.» Показывает градусник: на нем 37,6. Дальше думает: “Не страшно… Бывает.”
-            videoUrl: '/videos/3c/natasha/3c-natasha-1.mp4',
+            videoUrl: './videos/3c/natasha/3c-natasha-1.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -891,7 +893,7 @@ export const gamesList: TGame[] = [
           },
           {
             // 2. Несчастная Наташа говорит: «Токсикоз... Тошнит. Позавтракала, а на обед только бутерброд съела. Хорошо, хоть голова не кружится. К семинару могу подготовиться.»
-            videoUrl: '/videos/3c/natasha/3c-natasha-2.mp4',
+            videoUrl: './videos/3c/natasha/3c-natasha-2.mp4',
             answers: [
               {
                 text: 'Опасно',
@@ -912,7 +914,7 @@ export const gamesList: TGame[] = [
           },
           {
             // 3. Еще более несчастная Наташа: «Ну это кошмар какой-то. Постоянно рвет сегодня весь день. Сегодня не ела. И даже пить уже не могу. Голова кружится и во рту все пересохло.»
-            videoUrl: '/videos/3c/natasha/3c-natasha-3.mp4',
+            videoUrl: './videos/3c/natasha/3c-natasha-3.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -933,7 +935,7 @@ export const gamesList: TGame[] = [
           },
           {
             // 4. Озадаченная Наташа: «Ой, что-то месячные начались. Говорят, если маленький срок, бывает такое.»
-            videoUrl: '/videos/3c/natasha/3c-natasha-4.mp4',
+            videoUrl: './videos/3c/natasha/3c-natasha-4.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -954,7 +956,7 @@ export const gamesList: TGame[] = [
           },
           {
             // 5. Наташа страдает от боли: «Ну что так спина разболелась? В пояснице, и как будто заболит сильно, а потом отпустит. Никогда такого не было. Пойду полежу»
-            videoUrl: '/videos/3c/natasha/3c-natasha-5.mp4',
+            videoUrl: './videos/3c/natasha/3c-natasha-5.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -982,7 +984,7 @@ export const gamesList: TGame[] = [
           // Сюжет, если выбрали Ирину
           {
             // 1. Ирина озадачена: «Обычно у меня давление 100/60. А сейчас 120/65.»
-            videoUrl: '/videos/3c/irina/3c-irina-1.mp4',
+            videoUrl: './videos/3c/irina/3c-irina-1.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -1003,7 +1005,7 @@ export const gamesList: TGame[] = [
           },
           {
             // 2. Ирина расстроена: «Что-то цвет мочи сегодня другой, темный. И больно было в туалет ходить.»
-            videoUrl: '/videos/3c/irina/3c-irina-2.mp4',
+            videoUrl: './videos/3c/irina/3c-irina-2.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -1024,7 +1026,7 @@ export const gamesList: TGame[] = [
           },
           {
             // 3. Ирина страдает от боли: «Спина болит. Может, это грыжа опять, а может и нет. Но болит как обычно – тянет немного, боль одинаковая все время.»
-            videoUrl: '/videos/3c/irina/3c-irina-3.mp4',
+            videoUrl: './videos/3c/irina/3c-irina-3.mp4',
             answers: [
               {
                 text: 'Опасно',
@@ -1045,7 +1047,7 @@ export const gamesList: TGame[] = [
           },
           {
             // 4. Ирина озадаченно: «Ой, как я сильно отекла сегодня. Никогда такого не было. Становится хуже, и правая нога явно больше левой.»
-            videoUrl: '/videos/3c/irina/3c-irina-4.mp4',
+            videoUrl: './videos/3c/irina/3c-irina-4.mp4',
             answers: [
               {
                 isCorrect: true,
@@ -1066,7 +1068,7 @@ export const gamesList: TGame[] = [
           },
           {
             // 5. Ирина в расслабленном состоянии: «Голова кружится и как будто «мушки» поплыли.»
-            videoUrl: '/videos/3c/irina/3c-irina-5.mp4',
+            videoUrl: './videos/3c/irina/3c-irina-5.mp4',
             answers: [
               {
                 isCorrect: true,
