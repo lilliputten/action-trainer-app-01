@@ -22,7 +22,7 @@
   // border: 1px dashed green; // DEBUG
   position: absolute;
   margin: 0;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   flex-direction: column;
@@ -153,6 +153,13 @@ $buttonBlurFilters: blur(0.2vmin);
 }
 
 $textShadowSize: 0.3vmin;
+
+.finalImage {
+  // border: 1px solid red;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .finalComment {
   color: #fff;
