@@ -7,7 +7,7 @@
 
 Action trainer app.
 
-- Version: 0.0.4
-- Last changes timestamp: 2024.06.08 23:17 +0300
+- Version: 0.0.5
+- Last changes timestamp: 2024.06.11 18:28 +0300
 
 TODO: Create description for the build users.
