@@ -41,6 +41,7 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
     // finalSplashUrl,
     answers,
     finalComment,
+    finalImage,
   } = screenData;
   const answersCount = Array.isArray(answers) ? answers.length : 0;
   const hasAnswers = !!answersCount;
@@ -56,7 +57,8 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
   const buttonBorderWidth = videoContainerWidth && videoContainerWidth / 100;
   const buttonBorderRadius = videoContainerWidth && videoContainerWidth / 80;
   const finalButtonBorderWidth = videoContainerWidth && videoContainerWidth / 200;
-  const finalTextSize = videoContainerWidth && videoContainerWidth / 40;
+  const finalTextSize = videoContainerWidth && videoContainerWidth / 45;
+  const finalImageSize = videoContainerWidth && videoContainerWidth / 5;
   const refBox = React.useRef<HTMLDivElement>(null);
   /** Video has already played */
   const [videoComplete, setVideoComplete] = React.useState(false);
@@ -72,55 +74,57 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
   const [answerIdx, setAnswerIdx] = React.useState<number | undefined>();
   const isAnswered = videoComplete && (!hasAnswers || answerIdx !== undefined);
   const [hasNavigated, setHasNavigated] = React.useState(false);
-  const [hasInited, setInited] = React.useState(false);
-  // DEBUG
-  React.useEffect(() => {
-    // const video = refVideo.current;
-    console.log('[GameScreen:DEBUG]', {
-      isVideoStarted,
-      refVideo,
-      videoContainerWidth,
-      videoContainerHeight,
-      videoComplete,
-      videoEffectComplete,
-      isCanPlay,
-      isActive,
-      isFinished,
-      isFinishedComplete,
-      answerIdx,
-      isAnswered,
-      hasNavigated,
-      hasInited,
-    });
-  }, [
-    // prettier-ignore
-    isVideoStarted,
-    refVideo,
-    videoContainerWidth,
-    videoContainerHeight,
-    videoComplete,
-    videoEffectComplete,
-    isCanPlay,
-    isActive,
-    isFinished,
-    isFinishedComplete,
-    answerIdx,
-    isAnswered,
-    hasNavigated,
-    hasInited,
-  ]);
+  // const [hasInited, setInited] = React.useState(false);
+  /* // DEBUG
+   * React.useEffect(() => {
+   *   // const video = refVideo.current;
+   *   console.log('[GameScreen:DEBUG]', {
+   *     isVideoStarted,
+   *     refVideo,
+   *     videoContainerWidth,
+   *     videoContainerHeight,
+   *     videoComplete,
+   *     videoEffectComplete,
+   *     isCanPlay,
+   *     isActive,
+   *     isFinished,
+   *     isFinishedComplete,
+   *     answerIdx,
+   *     isAnswered,
+   *     hasNavigated,
+   *     hasInited,
+   *   });
+   * }, [
+   *   // prettier-ignore
+   *   isVideoStarted,
+   *   refVideo,
+   *   videoContainerWidth,
+   *   videoContainerHeight,
+   *   videoComplete,
+   *   videoEffectComplete,
+   *   isCanPlay,
+   *   isActive,
+   *   isFinished,
+   *   isFinishedComplete,
+   *   answerIdx,
+   *   isAnswered,
+   *   hasNavigated,
+   *   hasInited,
+   * ]);
+   */
   // Update geometry...
   const updateBoxGeometry = React.useCallback(() => {
     const box = refBox.current;
     if (box) {
       const { width, height } = getVideoSizeByRef(refVideo);
-      console.log('[updateBoxGeometry]', {
-        width,
-        height,
-        box,
-        // videoContainerWidth,
-        // videoContainerHeight,
-      });
+      /* console.log('[updateBoxGeometry]', {
+       *   width,
+       *   height,
+       *   box,
+       *   // videoContainerWidth,
+       *   // videoContainerHeight,
+       * });
+       */
       if (width && height) {
         box.style.width = px(width);
         box.style.height = px(height);
@@ -141,22 +145,15 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
   ]);
   // Init screen...
   React.useEffect(() => {
-    console.log('[GameScreen: Init screen]', {
-      gameId,
-      scenarioId,
-      screenNo,
-    });
-    setInited(true);
-    // setVideoComplete(false);
-    // setVideoEffectComplete(false);
-    // setActive(false);
-    // setAnswerIdx(undefined);
-    // setFinished(false);
-    // setFinishedComplete(false);
-    // setHasNavigated(false);
-    // setCanPlay(false);
+    /* console.log('[GameScreen: Init screen]', {
+     *   gameId,
+     *   scenarioId,
+     *   screenNo,
+     * });
+     */
+    // setInited(true);
     setTimeout(() => {
-      console.log('[GameScreen: Init screen : setActive]');
+      // console.log('[GameScreen: Init screen : setActive]');
       enableCanPlay();
       setActive(true);
     }, animationTime);
@@ -165,10 +162,11 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
   const startVideoPlay = React.useCallback(() => {
     const video = refVideo.current;
     if (video) {
-      console.log('[GameScreen] startVideoPlay', {
-        video,
-        testingAnswerLayouts,
-      });
+      /* console.log('[GameScreen] startVideoPlay', {
+       *   video,
+       *   testingAnswerLayouts,
+       * });
+       */
       if (!testingAnswerLayouts) {
         video.play();
       }
@@ -179,22 +177,14 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
   const startVideoPlayHandler = React.useRef<NodeJS.Timeout | undefined>(undefined);
   React.useEffect(() => {
     if (isCanPlay) {
-      console.log('[GameScreen: delayed startVideoPlay]', {
-        // isActive,
-        // refVideo,
-        // startVideoPlay,
-        // gameId,
-        // scenarioId,
-        // screenNo,
-        // isCanPlay,
-      });
+      // console.log('[GameScreen: delayed startVideoPlay]');
       if (startVideoPlayHandler.current) {
         clearTimeout(startVideoPlayHandler.current);
       }
       startVideoPlayHandler.current = setTimeout(startVideoPlay, effectTime);
     }
   }, [isCanPlay, startVideoPlay]);
-  /* // Set enableCanPlay handler...
+  /* // Set enableCanPlay handler (TODO?)...
    * React.useEffect(() => {
    *   const video = videoNode;
    *   console.log('[GameScreen: Set enableCanPlay handler]', {
@@ -234,19 +224,21 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
     [],
   );
   React.useEffect(() => {
-    console.log('[GameScreen: All effects have finished : before]', {
-      hasNavigated,
-      // isFinished,
-      isFinishedComplete,
-      isAnswered,
-    });
+    /* console.log('[GameScreen: All effects have finished : before]', {
+     *   hasNavigated,
+     *   // isFinished,
+     *   isFinishedComplete,
+     *   isAnswered,
+     * });
+     */
     if (!hasNavigated && isFinishedComplete && isAnswered) {
       const nextScreenRoute = isLastScreen
         ? `/game/${gameId}/finished`
         : getNextScreenRoute(gameId, scenarioId, screenNo, true);
-      console.log('[GameScreen:All effects have finished : navigate]', {
-        nextScreenRoute,
-      });
+      /* console.log('[GameScreen:All effects have finished : navigate]', {
+       *   nextScreenRoute,
+       * });
+       */
       setHasNavigated(true);
       navigate(nextScreenRoute);
     }
@@ -261,7 +253,7 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
     screenNo,
   ]);
   const handleFinished = React.useCallback<React.MouseEventHandler<HTMLButtonElement>>(() => {
-    console.log('[GameScreen:handleFinished]');
+    // console.log('[GameScreen:handleFinished]');
     setFinished(true);
     // TODO: Store an answer to the store for further analization?
     setTimeout(() => {
@@ -342,16 +334,27 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
             sx={{
               width: '90%',
               fontSize: finalTextSize,
-              gap: finalButtonBorderWidth,
+              gap: '0.75em',
+              // gap: finalButtonBorderWidth,
             }}
           >
             {isAnswered && (
               <>
+                {!!finalImage && (
+                  <Box
+                    className={classNames(styles.finalImage)}
+                    sx={{
+                      textAlign: 'center',
+                      height: finalImageSize,
+                      // height: '30%',
+                      width: '100%',
+                      backgroundImage: `url("${finalImage}")`,
+                    }}
+                  />
+                )}
                 <Box
-                  // prettier-ignore
                   className={classNames(styles.finalComment)}
                   sx={{
-                    // fontSize: '3vmin',
                     textAlign: 'center',
                     lineHeight: 1.4,
                   }}
@@ -365,6 +368,7 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
                   sx={{
                     borderWidth: finalButtonBorderWidth,
                     fontSize: finalTextSize,
+                    // marginTop: '0.2em',
                   }}
                 >
                   {finalButtonText}

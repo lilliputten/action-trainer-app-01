@@ -13,6 +13,7 @@ export interface TScreen {
   // finalSplashUrl: string;
   answers?: TAnswer[];
   finalComment?: string;
+  finalImage?: string;
 }
 
 export interface TScenario {

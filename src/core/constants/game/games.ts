@@ -33,6 +33,22 @@ const defaultRightAnswerSx: SxProps = {
   left: percent(51),
 };
 
+const secondGameLeftButtonSx = {
+  ...defaultAnswerSx,
+  top: percent(77.5),
+  height: percent(14),
+  left: percent(7.5),
+  width: percent(41),
+};
+
+const secondGameRightButtonSx = {
+  ...defaultRightAnswerSx,
+  top: percent(77.5),
+  height: percent(14),
+  left: percent(51.2),
+  width: percent(41),
+};
+
 const thirdGameLeftButtonSx = {
   ...defaultAnswerSx,
   top: percent(77.5),
@@ -43,26 +59,11 @@ const thirdGameLeftButtonSx = {
 
 const thirdGameRightButtonSx = {
   ...defaultRightAnswerSx,
-  //
   top: percent(77.5),
   height: percent(14),
   left: percent(51.2),
   width: percent(41),
 };
-
-/* // XXX: Conversion patterns:
- *
- * // Urls:
- *
- * '<,'>s/^.*r\.mp.*\n//
- * '<,'>s/\(.*\.mp4\)\n\(.*\.jpg\)/{\rvideoUrl: 'PATH\/\1',\r// finalSplashUrl: 'PATH\/\2',\r},/
- * '<,'>s/PATH/\/videos\/1c\/natasha/
- * '<,'>s/PATH/\/videos\/1c\/irina/
- *
- * // Answer patterns:
- *
- * '<,'>s/\s*\(\S.\+\)/{ text: '\1', buttonSx: { ...defaultAnswerSx } },/ | '<,'>s/isCorrect: true, text: '/isCorrect: true, text: '/
- */
 
 export const gamesList: TGame[] = [
   {
@@ -75,7 +76,6 @@ export const gamesList: TGame[] = [
         screens: [
           {
             videoUrl: '/videos/1c/natasha/1c-1.mp4',
-            // finalSplashUrl: '/videos/1c/natasha/1c-1r.jpg',
             answers: [
               {
                 isCorrect: true,
@@ -100,9 +100,8 @@ export const gamesList: TGame[] = [
           },
           {
             videoUrl: '/videos/1c/natasha/1c-2.mp4',
-            // finalSplashUrl: '/videos/1c/natasha/1c-2r.jpg',
             finalComment:
-              'Если давление выше 140/90, нужно вызывать скорую. Иначе такое состояние  негативно скажется на беременности.',
+              'Если давление выше 140/90, нужно вызывать скорую. Иначе такое состояние негативно скажется на беременности.',
             answers: [
               {
                 text: 'Сказать врачу на плановом приеме',
@@ -130,7 +129,6 @@ export const gamesList: TGame[] = [
           },
           {
             videoUrl: '/videos/1c/natasha/1c-3.mp4',
-            // finalSplashUrl: '/videos/1c/natasha/1c-3r.jpg',
             finalComment:
               'Так как после приема пищи давление можно измерять только через 1-2 часа, по утрам первым делом лучше измерить давление. Чтобы не забыть об этом и сэкономить время, положите тонометр рядом с кроватью. Так вы сможете измерять давление сразу после пробуждения.',
             answers: [
@@ -155,7 +153,6 @@ export const gamesList: TGame[] = [
           },
           {
             videoUrl: '/videos/1c/natasha/1c-4.mp4',
-            // finalSplashUrl: '/videos/1c/natasha/1c-4r.jpg',
             finalComment: 'Перед измерением давления убирайте одежду с выбранной руки.',
             answers: [
               {
@@ -171,7 +168,6 @@ export const gamesList: TGame[] = [
           },
           {
             videoUrl: '/videos/1c/natasha/1c-5.mp4',
-            // finalSplashUrl: '/videos/1c/natasha/1c-5r.jpg',
             finalComment:
               'При беременности нормальным считается давление до 130/85 мм рт. ст. Это стандартная норма, но у вас может быть другая. Проконсультируйтесь с врачом. Даже незначительное повышение относительно вашего обычного показателя на 10 мм рт. ст. требует внимания.',
             answers: [
@@ -356,6 +352,515 @@ export const gamesList: TGame[] = [
     ],
   },
   {
+    id: EGameType.Second,
+    startVideoUrl: '/videos/1c/1c-0-start.mp4',
+    scenarios: [
+      {
+        id: EScenarioType.Natasha,
+        selectButtonSx: { ...defaultGameScenarioButtonSx },
+        screens: [
+          {
+            // Наташа выбирает напиток в столовой, показываем буфет (витрину), стоят три напитка. Наташа думает: “Ну вот, опять тошнит, надоело! Что бы взять, чтобы полегчало?”
+            videoUrl: '/videos/2c/natasha/2c-natasha-1.mp4',
+            answers: [
+              {
+                text: 'Кола',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  left: percent(4),
+                  width: percent(27.5),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Вода с лимоном',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  left: percent(32),
+                  width: percent(35.5),
+                  height: percent(13.5),
+                },
+              },
+              {
+                text: 'Кофе',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  left: percent(68),
+                  width: percent(28),
+                },
+              },
+            ],
+            finalComment:
+              'Чтобы немного облегчить самочувствие и уменьшить частоту приступов тошноты и рвоты, помогают прохладные напитки. Например, негазированная вода с лимоном.',
+          },
+          {
+            // Наташа в абстрактном пространстве, корчится. Думает: “Опять тошнит!!! Врач говорил, помогают некоторые продукты. Что-нибудь из моего подойдет?” Тут показываем содержимое сумки.
+            videoUrl: '/videos/2c/natasha/2c-natasha-2.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Сушки',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  left: percent(4),
+                  width: percent(22),
+                },
+              },
+              {
+                text: 'Чипсы',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(27),
+                  width: percent(22),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Леденцы',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(49.8),
+                  width: percent(22),
+                },
+              },
+              {
+                text: 'Сникерс',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(72.8),
+                  width: percent(22),
+                },
+              },
+            ],
+            finalComment:
+              'Советуем найти универсальный безвредный продукт, который снимает приступ тошноты именно у вас. Например, это могут быть сушки, леденцы или дольки кислых фруктов.',
+          },
+          {
+            // Изображаем Наташу плачущей на абстрактном фоне. Думает: “Ну вот, не взяла важный конспект, все время что-то забываю! Еще и спать хочу все время. Это ненормально!?”
+            videoUrl: '/videos/2c/natasha/2c-natasha-3.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Это является нормой для беременности',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  top: percent(73.7),
+                  height: percent(21.3),
+                  left: percent(4),
+                  width: percent(45),
+                },
+              },
+              {
+                text: 'Это повод обратиться к врачу',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(73.7),
+                  height: percent(21.3),
+                  left: percent(50.5),
+                  width: percent(45),
+                },
+              },
+            ],
+            finalComment:
+              'Забывчивость, сонливость, переменчивое настроение и плаксивость – нормальные проявления беременности. Переживать не стоит.',
+          },
+          {
+            // Наташа с носовым платком на абстрактном фоне, думает: “Еще и нос заложило. Где мои капли и соляной раствор? Всегда мне помогает.”.
+            videoUrl: '/videos/2c/natasha/2c-natasha-4.mp4',
+            answers: [
+              {
+                text: 'Использовать только капли',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  top: percent(51.5),
+                  height: percent(21.3),
+                  left: percent(4),
+                  width: percent(45),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Использовать только соляной раствор',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(51.5),
+                  height: percent(21.3),
+                  left: percent(50.5),
+                  width: percent(45),
+                },
+              },
+              {
+                text: 'Использовать и капли, и соляной раствор',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(73.7),
+                  height: percent(21.3),
+                  left: percent(4),
+                  width: percent(45),
+                },
+              },
+              {
+                text: 'Ничего не использовать до похода ко врачу',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(73.7),
+                  height: percent(21.3),
+                  left: percent(50.5),
+                  width: percent(45),
+                },
+              },
+            ],
+            finalComment:
+              'Не используйте сосудосуживающие капли без показаний врача. Самостоятельно от заложенности можно применить, например, соляной раствор.',
+          },
+          {
+            // Наташа в магазине с тележкой, думает: «Так хочется чипсов! Беременным можно все, что хочется! Съем половинку пачки, ничего же страшного.»
+            videoUrl: '/videos/2c/natasha/2c-natasha-5.mp4',
+            answers: [
+              {
+                text: 'Да, Наташа права',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  left: percent(7),
+                  width: percent(40.5),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Нет, Наташа не права',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(48.5),
+                  width: percent(43),
+                },
+              },
+            ],
+            finalComment:
+              'Во время беременности могут появляться необычные вкусовые пристрастия. Можете есть то, что не вредит здоровью. От вредных продуктов, например, чипсов, стоит отказаться. Они в избытке содержат соль, ароматизаторы, консерванты, усилители вкуса и другие соединения, которые отрицательно влияют на здоровье будущей мамы и развитие плода.',
+          },
+          {
+            // Наташа в магазине перед полкой с косметикой, выбирает крем у полок с баночками. Думает: “После беременности такие некрасивые растяжки. Аня пользовалась вот этим, ей помогло вроде, или у врача спросить?”. Тянется за баночкой.
+            videoUrl: '/videos/2c/natasha/2c-natasha-6.mp4',
+            answers: [
+              {
+                text: 'Взять крем подруги',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  left: percent(2.6),
+                  width: percent(40.5),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Посоветоваться с врачом',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(47),
+                  width: percent(50),
+                },
+              },
+            ],
+            finalComment:
+              'Совсем предотвратить растяжки невозможно, однако можно уменьшить их проявления. В этом помогут специальные средства ухода за кожей. Какие из них подойдут именно вам, лучше узнать у врача.',
+          },
+          {
+            // Наташа меряет давление (правильно, рукав пижамы поднят вверх), крупно экран тонометра,  результат на тонометре - 115/74 мм рт. ст. Думает: “Не помню, нормально или нет. Обычно у меня 120/80. Вроде, все ок?”
+            videoUrl: '/videos/2c/natasha/2c-natasha-7.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Давление в норме',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  top: percent(73.7),
+                  height: percent(21.3),
+                  left: percent(0),
+                  width: percent(21),
+                },
+              },
+              {
+                text: 'Это нормальное высокое давление',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(73.7),
+                  height: percent(21.3),
+                  left: percent(20.5),
+                  width: percent(34.5),
+                },
+              },
+              {
+                text: 'Это высокое артериальное давление',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(73.7),
+                  height: percent(21.3),
+                  left: percent(55),
+                  width: percent(44.5),
+                },
+              },
+            ],
+            finalComment:
+              'Нормальное давление при беременности - до 130/85 мм рт. ст. Это стандартная норма, но у вас может быть другая. Проконсультируйтесь с врачом. Даже незначительное повышение относительно вашего обычного показателя на 10 мм рт. ст. требует внимания. А пониженным считается давление, которое на 20% ниже вашего привычного.',
+          },
+        ],
+      },
+      {
+        id: EScenarioType.Irina,
+        selectButtonSx: { ...defaultGameScenarioButtonSx, left: percent(50.7) },
+        screens: [
+          {
+            // Ирина в магазине с тележкой, думает: “Здорово, что у меня пока нет токсикоза, а если начнется? Возьму-ка я что-нибудь, что обычно снимает приступы тошноты у беременных. Что же мне взять?”
+            videoUrl: '/videos/2c/irina/2c-irina-1.mp4',
+            answers: [
+              {
+                text: 'Йогурт',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  left: percent(4),
+                  width: percent(22),
+                },
+              },
+              {
+                text: 'Пирожное',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(27),
+                  width: percent(22),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Грейпфрут',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(50),
+                  width: percent(22),
+                },
+              },
+              {
+                text: 'Банан',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(72.5),
+                  width: percent(22.5),
+                },
+              },
+            ],
+            finalComment:
+              'Если вас мучает токсикоз, советуем найти универсальный продукт, который снимает приступ тошноты именно у вас. Например, это могут быть сушки, леденцы или дольки кислых фруктов.',
+          },
+          {
+            // Ирина в магазине с тележкой, думает: “У моей беременной подруги были запоры. Нужно бы как-то себя обезопасить. Возьму-ка продукты для профилактики, которые советовал врач. А что он советовал?”.
+            videoUrl: '/videos/2c/irina/2c-irina-2.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Творог',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  left: percent(2.5),
+                  width: percent(22),
+                },
+              },
+              {
+                text: 'Белый хлеб',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(25.5),
+                  width: percent(25),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Морковь',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(51.5),
+                  width: percent(22),
+                },
+              },
+              {
+                text: 'Шоколад',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  left: percent(75),
+                  width: percent(22),
+                },
+              },
+            ],
+            finalComment:
+              'Чтобы избежать запоров, включите в рацион кисломолочку и продукты, содержащие клетчатку. Исключите белый хлеб, шоколад, крепкий чай и кофе.',
+            finalImage: '/videos/2c/irina/2c-irina-2r.png',
+          },
+          {
+            // Ирина на абстрактном фоне, думает: “Каждый день небольшое головокружение. Как-то это меня волнует. Вдруг с малышом что-то не так?”
+            videoUrl: '/videos/2c/irina/2c-irina-3.mp4',
+            answers: [
+              {
+                text: 'Ирина права',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Ирина не права',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                },
+              },
+            ],
+            finalComment:
+              'Легкое головокружение – нормальное проявление беременности, оно не указывает на проблему.',
+          },
+          {
+            // Ирина на абстрактном фоне, думает: “Так странно, никогда не ела банан со сметаной, а теперь все время об этом думаю. Наверное, не стоит экспериментировать?”
+            videoUrl: '/videos/2c/irina/2c-irina-4.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Можно съесть, так как эти продукты не вредят маме и малышу',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  top: percent(51),
+                  height: percent(21.2),
+                  left: percent(16),
+                  width: percent(68),
+                },
+              },
+              {
+                text: 'В беременность не стоит пробовать новые сочетания',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(74),
+                  height: percent(21.2),
+                  left: percent(16),
+                  width: percent(68),
+                },
+              },
+            ],
+            finalComment:
+              'Во время беременности у вас могут измениться вкусовые пристрастия. Разрешите себе любые сочетания продуктов, которые не вредят здоровью.',
+          },
+          {
+            // Ирина с носовым платком на абстрактном фоне. Думает: “Заложило нос, ну вот, простыла! Говорили же мне беречь себя. Неужели я заболела?”.
+            videoUrl: '/videos/2c/irina/2c-irina-5.mp4',
+            answers: [
+              {
+                text: 'Заложенность носа – плохой признак, срочно к врачу',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  top: percent(51),
+                  height: percent(21.2),
+                  left: percent(16),
+                  width: percent(68),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Заложенность носа еще не говорит о простуде или воспалении',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(74),
+                  height: percent(21.2),
+                  left: percent(16),
+                  width: percent(68),
+                },
+              },
+            ],
+            finalComment:
+              'Один из неприятных симптомов беременности – заложенность носа. Ринит беременных не указывает на воспаление или простудное заболевание. Просто гормон беременности задерживает жидкость, и слизистая носа отекает.',
+          },
+          {
+            // Ирина сидит в кресле, озадачена. В той же розовой пижаме. Думает: “Что-то я часто хожу в туалет. Может, что-то застудила? Живот же еще не растет, ребенок пока ни на что не давит.”
+            videoUrl: '/videos/2c/irina/2c-irina-6.mp4',
+            answers: [
+              {
+                text: 'Частое мочеиспускание на раннем сроке – плохой признак',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                  top: percent(51),
+                  height: percent(21.2),
+                  left: percent(16),
+                  width: percent(68),
+                },
+              },
+              {
+                isCorrect: true,
+                text: 'Частое мочеиспускание в норме может быть и на раннем сроке',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                  top: percent(74),
+                  height: percent(21.2),
+                  left: percent(16),
+                  width: percent(68),
+                },
+              },
+            ],
+            finalComment:
+              'Один из спутников беременности – частое мочеиспускание. На ранних сроках этому способствуют гормоны, а уже позже – растущая матка, которая давит на мочевой пузырь.',
+          },
+          {
+            // Ирина меряет давление, результат на автоматическом тонометре - 103/65 мм рт. ст. Думает: “Норма -  до 130/85, но обычно-то у меня 100/60. Думаю, все хорошо.”
+            videoUrl: '/videos/2c/irina/2c-irina-7.mp4',
+            answers: [
+              {
+                isCorrect: true,
+                text: 'Ирина права',
+                buttonSx: {
+                  ...secondGameLeftButtonSx,
+                  // ...
+                },
+              },
+              {
+                text: 'Ирина не права',
+                buttonSx: {
+                  ...secondGameRightButtonSx,
+                  // ...
+                },
+              },
+            ],
+            finalComment:
+              'У Ирины все в порядке. Внимания требует повышение давления относительно обычного показателя на 10 мм рт. ст. и более.',
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: EGameType.Third,
     startVideoUrl: '/videos/3c/3c-0-start.mp4',
     scenarios: [
@@ -476,7 +981,7 @@ export const gamesList: TGame[] = [
         screens: [
           // Сюжет, если выбрали Ирину
           {
-            // 1.  Ирина озадачена: «Обычно у меня давление 100/60. А сейчас 120/65.»
+            // 1. Ирина озадачена: «Обычно у меня давление 100/60. А сейчас 120/65.»
             videoUrl: '/videos/3c/irina/3c-irina-1.mp4',
             answers: [
               {
