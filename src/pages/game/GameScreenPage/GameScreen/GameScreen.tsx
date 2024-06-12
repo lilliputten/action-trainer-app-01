@@ -28,10 +28,18 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
     gameId,
     scenarioId,
     screenNo,
-    // gameData,
+    gameData,
     scenarioData,
     screenData,
   } = props;
+  console.log('[GameScreen:DEBUG]', {
+    gameId,
+    scenarioId,
+    screenNo,
+    gameData,
+    scenarioData,
+    screenData,
+  });
   // Eg page url: /game/first/irina/1
   const navigate = useNavigate();
   // Get game data...
@@ -213,7 +221,7 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
     console.error('[GameScreen:handleVideoError]', {
       error,
     });
-    showError('Ошибка показа видео');
+    showError(`Ошибка показа видео ("${videoUrl}")`);
   }, []);
   /** Final action */
   const handleUserChoice = React.useCallback<React.MouseEventHandler<HTMLButtonElement>>(

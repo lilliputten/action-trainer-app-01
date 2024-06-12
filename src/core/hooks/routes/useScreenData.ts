@@ -57,6 +57,14 @@ export function useScreenData() {
     debugger; // eslint-disable-line no-debugger
     throw error;
   }
+  console.log('[useScreenData]', {
+    gameId,
+    scenarioId,
+    screenNo,
+    gameData,
+    scenarioData,
+    screenData,
+  });
   return {
     gameId,
     scenarioId,

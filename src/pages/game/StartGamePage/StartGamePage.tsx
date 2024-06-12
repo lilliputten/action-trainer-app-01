@@ -14,6 +14,9 @@ import styles from './StartGamePage.module.scss';
 
 export const StartGamePage: React.FC = observer(() => {
   const { game: gameId = defaultGameType } = useParams<TGameRouterParams>();
+  console.log('[StartGamePage]', {
+    gameId,
+  });
   const error = React.useMemo(() => {
     const isValidGame = !!gameId && gameTypes.includes(gameId) && !!gamesHash[gameId];
     if (!isValidGame) {

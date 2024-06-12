@@ -38,5 +38,10 @@ export function useScreenParams(opts: TScreenParamsOptions | undefined = undefin
       }
     }
   }, [gameId, scenarioId, screenNo, navigate, opts]);
+  console.log('[useScreenParams]', {
+    gameId,
+    scenarioId,
+    screenNo,
+  });
   return { gameId, scenarioId, screenNo };
 }

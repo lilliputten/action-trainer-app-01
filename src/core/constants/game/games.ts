@@ -355,7 +355,7 @@ export const gamesList: TGame[] = [
   },
   {
     id: EGameType.Second,
-    startVideoUrl: './videos/1c/1c-0-start.mp4',
+    startVideoUrl: './videos/2c/2c-0-start.mp4',
     scenarios: [
       {
         id: EScenarioType.Natasha,

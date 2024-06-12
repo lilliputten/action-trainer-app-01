@@ -16,6 +16,7 @@ import { useContainerSize } from 'src/ui/hooks';
 import { getVideoSizeByRef } from 'src/core/helpers/video';
 
 import styles from './SelectGameScenario.module.scss';
+import { showError } from 'src/ui/Basic';
 
 const doDebug = isDev && false;
 
@@ -25,6 +26,20 @@ interface TSelectGameScenarioProps {
 
 export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = observer((props) => {
   const { gameId } = props;
+  // Get game data...
+  const gameData = gamesHash[gameId];
+  if (!gameData) {
+    const error = new Error(`Invalid data for game '${gameId}'!`);
+    // eslint-disable-next-line no-console
+    console.error('[SelectGameScenario:error]', error);
+    throw error;
+  }
+  const { startVideoUrl } = gameData;
+  console.log('[SelectGameScenario:DEBUG]', {
+    gameId,
+    gameData,
+    startVideoUrl,
+  });
   const navigate = useNavigate();
   const {
     ref: refVideo,
@@ -83,6 +98,16 @@ export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = observer((
       setVideoEffectComplete(true);
     }, effectTime);
   }, []);
+  const handleVideoError = React.useCallback(
+    (error: unknown) => {
+      // eslint-disable-next-line no-console
+      console.error('[SelectGameScenario:handleVideoError]', {
+        error,
+      });
+      showError(`Ошибка показа видео ("${startVideoUrl}")`);
+    },
+    [startVideoUrl],
+  );
   const handleScenarioSelect = React.useCallback<React.MouseEventHandler<HTMLButtonElement>>(
     (event) => {
       const scenario = event.currentTarget.id as EScenarioType;
@@ -96,15 +121,6 @@ export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = observer((
   );
   /** Has all screen activities finished? */
   const isFinished = !!scenario;
-  // Get game data...
-  const gameData = gamesHash[gameId];
-  if (!gameData) {
-    const error = new Error(`Invalid data for game '${gameId}'!`);
-    // eslint-disable-next-line no-console
-    console.error('[SelectGameScenario:error]', error);
-    throw error;
-  }
-  const { startVideoUrl } = gameData;
   // Create scenario buttons...
   const scenarioButtons = React.useMemo(() => {
     return gameData.scenarios.map((game) => {
@@ -136,6 +152,7 @@ export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = observer((
         className={styles.video}
         preload="auto"
         onEnded={handleVideoEnd}
+        onError={handleVideoError}
         ref={refVideo}
         muted
       ></video>

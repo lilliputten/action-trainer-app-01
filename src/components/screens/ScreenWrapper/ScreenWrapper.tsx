@@ -16,12 +16,18 @@ import { ShowError } from 'src/components/app/ShowError';
 
 interface TProps extends TPropsWithChildrenAndClassName {
   ref?: React.ForwardedRef<HTMLDivElement>;
+  screenType?: string;
+  // gameId?: string;
 }
 
 export const ScreenWrapper = observer<TProps, HTMLDivElement>(
   React.forwardRef((props, ref) => {
     const appSessionStore = useAppSessionStore();
     const { game: gameId = defaultGameType } = useParams<TGameRouterParams>();
+    /* console.log('[ScreenWrapper:DEBUG]', {
+     *   gameId,
+     * });
+     */
     const { fullscreen, ready } = appSessionStore;
     const { children, className } = props;
     const location = useLocation();
@@ -43,7 +49,7 @@ export const ScreenWrapper = observer<TProps, HTMLDivElement>(
     }, []);
     return (
       <ErrorBoundary fallbackRender={ShowError}>
-        <Box className={classNames(className)} ref={ref}>
+        <Box className={classNames(className)} ref={ref} data-game-id={gameId}>
           {children}
           {ready && (
             <Stack
