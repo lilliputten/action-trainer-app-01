@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
 import { Box, ButtonBase } from '@mui/material';
 import classNames from 'classnames';
 
@@ -14,9 +16,10 @@ import { ScreenWrapper } from 'src/components/screens/ScreenWrapper';
 import { gamesHash } from 'src/core/constants/game/games';
 import { useContainerSize } from 'src/ui/hooks';
 import { getVideoSizeByRef } from 'src/core/helpers/video';
+import { showError } from 'src/ui/Basic';
+import { ShowError } from 'src/components/app/ShowError';
 
 import styles from './SelectGameScenario.module.scss';
-import { showError } from 'src/ui/Basic';
 
 const doDebug = isDev && false;
 
@@ -24,7 +27,7 @@ interface TSelectGameScenarioProps {
   gameId: EGameType;
 }
 
-export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = observer((props) => {
+export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = (props) => {
   const { gameId } = props;
   // Get game data...
   const gameData = gamesHash[gameId];
@@ -35,11 +38,12 @@ export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = observer((
     throw error;
   }
   const { startVideoUrl } = gameData;
-  console.log('[SelectGameScenario:DEBUG]', {
-    gameId,
-    gameData,
-    startVideoUrl,
-  });
+  /* console.log('[SelectGameScenario:DEBUG]', {
+   *   gameId,
+   *   gameData,
+   *   startVideoUrl,
+   * });
+   */
   const navigate = useNavigate();
   const {
     ref: refVideo,
@@ -98,13 +102,17 @@ export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = observer((
       setVideoEffectComplete(true);
     }, effectTime);
   }, []);
+  const [error, setError] = React.useState<Error>();
   const handleVideoError = React.useCallback(
     (error: unknown) => {
       // eslint-disable-next-line no-console
       console.error('[SelectGameScenario:handleVideoError]', {
         error,
       });
-      showError(`Ошибка показа видео ("${startVideoUrl}")`);
+      const nextError = new Error(`Ошибка показа видео ("${startVideoUrl}")`);
+      showError(nextError);
+      setError(nextError);
+      // throw error;
     },
     [startVideoUrl],
   );
@@ -137,32 +145,37 @@ export const SelectGameScenario: React.FC<TSelectGameScenarioProps> = observer((
       );
     });
   }, [gameData, handleScenarioSelect, scenario, buttonBorderWidth]);
+  if (error) {
+    return <ShowError error={error} />;
+  }
   return (
-    <ScreenWrapper
-      className={classNames(
-        styles.root,
-        (doDebug || videoComplete) && styles.videoComplete,
-        (doDebug || videoEffectComplete) && styles.videoEffectComplete,
-        (doDebug || isFinished) && styles.finished,
-        (doDebug || isActive) && !isFinished && styles.active,
-      )}
-    >
-      <video
-        src={startVideoUrl}
-        className={styles.video}
-        preload="auto"
-        onEnded={handleVideoEnd}
-        onError={handleVideoError}
-        ref={refVideo}
-        muted
-      ></video>
-      <Box className={classNames(styles.overContainer)}>
-        <Box ref={refBox} className={classNames(styles.overBox)}>
-          {/* Scenario buttons */}
-          {scenarioButtons}
+    <ErrorBoundary FallbackComponent={ShowError}>
+      <ScreenWrapper
+        className={classNames(
+          styles.root,
+          (doDebug || videoComplete) && styles.videoComplete,
+          (doDebug || videoEffectComplete) && styles.videoEffectComplete,
+          (doDebug || isFinished) && styles.finished,
+          (doDebug || isActive) && !isFinished && styles.active,
+        )}
+      >
+        <video
+          src={startVideoUrl}
+          className={styles.video}
+          preload="auto"
+          onEnded={handleVideoEnd}
+          onError={handleVideoError}
+          ref={refVideo}
+          muted
+        ></video>
+        <Box className={classNames(styles.overContainer)}>
+          <Box ref={refBox} className={classNames(styles.overBox)}>
+            {/* Scenario buttons */}
+            {scenarioButtons}
+          </Box>
         </Box>
-      </Box>
-      <Box className={classNames(styles.curtain)}></Box>
-    </ScreenWrapper>
+        <Box className={classNames(styles.curtain)}></Box>
+      </ScreenWrapper>
+    </ErrorBoundary>
   );
-});
+};

@@ -14,6 +14,7 @@ import { useContainerSize } from 'src/ui/hooks';
 import { animationTime, effectTime } from 'src/core/assets/scss';
 import { getNextScreenRoute } from 'src/core/helpers/routes';
 import { TPropsWithClassName } from 'src/core/types';
+import { ShowError } from 'src/components/app/ShowError';
 
 import styles from './GameScreen.module.scss';
 
@@ -28,18 +29,19 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
     gameId,
     scenarioId,
     screenNo,
-    gameData,
+    // gameData,
     scenarioData,
     screenData,
   } = props;
-  console.log('[GameScreen:DEBUG]', {
-    gameId,
-    scenarioId,
-    screenNo,
-    gameData,
-    scenarioData,
-    screenData,
-  });
+  /* console.log('[GameScreen:DEBUG]', {
+   *   gameId,
+   *   scenarioId,
+   *   screenNo,
+   *   // gameData,
+   *   scenarioData,
+   *   screenData,
+   * });
+   */
   // Eg page url: /game/first/irina/1
   const navigate = useNavigate();
   // Get game data...
@@ -216,13 +218,19 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
       setVideoEffectComplete(true);
     }, effectTime);
   }, []);
-  const handleVideoError = React.useCallback((error: unknown) => {
-    // eslint-disable-next-line no-console
-    console.error('[GameScreen:handleVideoError]', {
-      error,
-    });
-    showError(`Ошибка показа видео ("${videoUrl}")`);
-  }, []);
+  const [error, setError] = React.useState<Error>();
+  const handleVideoError = React.useCallback(
+    (error: unknown) => {
+      // eslint-disable-next-line no-console
+      console.error('[GameScreen:handleVideoError]', {
+        error,
+      });
+      const nextError = new Error(`Ошибка показа видео ("${videoUrl}")`);
+      showError(nextError);
+      setError(nextError);
+    },
+    [videoUrl],
+  );
   /** Final action */
   const handleUserChoice = React.useCallback<React.MouseEventHandler<HTMLButtonElement>>(
     (event) => {
@@ -299,6 +307,9 @@ export const GameScreen: React.FC<TGameScreenProps> = (props) => {
     buttonBorderRadius,
   ]);
   const finalButtonText = isLastScreen ? 'Завершить' : 'Дальше';
+  if (error) {
+    return <ShowError error={error} />;
+  }
   return (
     <ScreenWrapper
       className={classNames(

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -23,7 +25,7 @@ function SelectGameScenarioPageWrapper() {
 
 export function SelectGameScenarioPage() {
   return (
-    <ErrorBoundary fallbackRender={ShowError}>
+    <ErrorBoundary FallbackComponent={ShowError}>
       <SelectGameScenarioPageWrapper />
     </ErrorBoundary>
   );
