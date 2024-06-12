@@ -1,6 +1,6 @@
 Project: action-trainer-app-01
 Version: 0.0.6
 Branch: main
-Commit: 11b35c6
-Fixed: 2024.06.11 20:10 +0300
-Built: 2024.06.11 20:10 +0300
+Commit: c47db2c
+Fixed: 2024.06.12 16:16 +0300
+Built: 2024.06.12 16:16 +0300
